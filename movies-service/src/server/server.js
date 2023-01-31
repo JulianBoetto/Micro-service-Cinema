@@ -2,6 +2,7 @@ import "express-async-errors";
 import express from 'express';
 import morgan from 'morgan';
 let server = null;
+const PORT = process.env.PORT || 3000;
 
 async function start(api, repository) {
     const app = express();
@@ -14,7 +15,7 @@ async function start(api, repository) {
         res.sendStatus(500);
     })
 
-    server = app.listen(process.env.PORT);
+    server = app.listen(PORT);
     return server;
 }
 
@@ -23,4 +24,4 @@ async function stop() {
     return true;
 }
 
-export default { start, stop }
+export default { start, stop, PORT }
