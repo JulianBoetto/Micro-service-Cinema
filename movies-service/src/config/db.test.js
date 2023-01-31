@@ -1,5 +1,5 @@
 import { test, expect } from "@jest/globals";
-import database from "./db";
+import database from "./db.js";
 
 test("Connection Database", async () => {
     const connection = await database.connect();
