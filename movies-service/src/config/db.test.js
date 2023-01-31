@@ -10,3 +10,9 @@ test("Disconnection Database", async () => {
     const isDisconnected = await database.disconnect();
     expect(isDisconnected).toBeTruthy();
 });
+
+test("Disconnection Database without client connection", async () => {
+    await database.disconnect();
+    const isDisconnected = await database.disconnect();
+    expect(isDisconnected).toBeTruthy();
+});
