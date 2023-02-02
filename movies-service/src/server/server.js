@@ -1,12 +1,20 @@
 import "express-async-errors";
 import express from 'express';
 import morgan from 'morgan';
+let PORT = process.env.PORT || 3000;
 let server = null;
-const PORT = process.env.PORT || 3000;
+const MS_NAME = process.env.MS_NAME;
 
 async function start(api, repository) {
+    // Somente para testes mockados
+    if(api && api._isMockFunction) PORT = process.env.PORT;
+
     const app = express();
     app.use(morgan('dev'));
+
+    app.get("/health", (req, res, next) => {
+        res.status(200).send(`The service ${MS_NAME} is running at ${PORT}`)
+    })
     
     api(app, repository);
 
