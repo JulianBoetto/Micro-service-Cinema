@@ -7,7 +7,7 @@ import repository from "./repository/repository.js";
 (async () => {
     try {
         await server.start(movies, repository);
-        console.log('Server is up and running at ' + server.PORT);
+        console.log('Server is up and running at ' + process.env.PORT);
     } catch (error) {
         console.error(error);
     }

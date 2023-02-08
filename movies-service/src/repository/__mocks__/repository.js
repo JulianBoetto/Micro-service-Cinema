@@ -54,6 +54,8 @@ async function getAllMovies() {
 }
 
 async function getMovieById(id) {
+    if (id == -1) return null;
+    
     movies[0]._id = id;
     return movies[0];
 }
