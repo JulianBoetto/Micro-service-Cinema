@@ -34,4 +34,5 @@ export default {
   testPathIgnorePatterns: [
     "/node_modules/"
   ],
+  setupFiles: ["dotenv/config"]
 };

@@ -2,11 +2,15 @@ import "express-async-errors";
 import express from 'express';
 import morgan from 'morgan';
 let server = null;
-const PORT = process.env.PORT || 3000;
+const MS_NAME = process.env.MS_NAME;
 
 async function start(api, repository) {
     const app = express();
     app.use(morgan('dev'));
+
+    app.get("/health", (req, res, next) => {
+        res.status(200).send(`The service ${MS_NAME} is running at ${process.env.PORT}`)
+    })
     
     api(app, repository);
 
@@ -15,7 +19,7 @@ async function start(api, repository) {
         res.sendStatus(500);
     })
 
-    server = app.listen(PORT);
+    server = app.listen(process.env.PORT);
     return server;
 }
 
@@ -24,4 +28,4 @@ async function stop() {
     return true;
 }
 
-export default { start, stop, PORT }
+export default { start, stop }
