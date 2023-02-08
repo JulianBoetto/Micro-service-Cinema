@@ -14,25 +14,27 @@ afterAll(async () => {
     await server.stop();
 })
 
-test("GET /movies", async () => {
-    request(app)
+test("GET /movies 200 OK", async () => {
+    const response = await request(app)
         .get("/movies")
-        .expect('Content-Type', /json/)
-        .expect(200);
+    expect(response.status).toEqual(200);
+    expect(Array.isArray(response.body)).toBeTruthy();
+    expect(response.body.length).toBeTruthy();
 })
 
-test("GET /movies/:id", async () => {
+test("GET /movies/:id 200 OK", async () => {
     const idMovieMock = "1";
-    request(app)
+    const response = await request(app)
         .get(`/movies/${idMovieMock}`)
-        .expect('Content-Type', /json/)
-        .expect(200)
-        .expect(idMovieMock);
+    expect(response.status).toEqual(200);
+    expect(response.body).toBeTruthy();
+    expect(response.body._id).toEqual(idMovieMock);
 })
 
-test("GET /movies/premieres ", async () => {
-    request(app)
+test("GET /movies/premieres 200 OK", async () => {
+    const response = await request(app)
         .get("/movies/premieres")
-        .expect('Content-Type', /json/)
-        .expect(200);
+    expect(response.status).toEqual(200);
+    expect(Array.isArray(response.body)).toBeTruthy();
+    expect(response.body.length).toBeTruthy();
 })
