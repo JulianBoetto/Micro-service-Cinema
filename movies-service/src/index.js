@@ -1,5 +1,3 @@
-import dotenv from "dotenv-safe";
-dotenv.config();
 import movies from "./api/movies.js";
 import server from "./server/server.js";
 import repository from "./repository/repository.js";
