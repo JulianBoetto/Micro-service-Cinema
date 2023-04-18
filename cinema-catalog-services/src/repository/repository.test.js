@@ -20,3 +20,8 @@ test('getAllCities', async () => {
     expect(Array.isArray(cities)).toBeTruthy();
     expect(cities.length).toBeTruthy();
 })
+
+test('getCinemasByCityId', async () => {
+    const cinemas = await repository.getCinemasByCityId(cityId);
+    expect(Array.isArray(cinemas)).toBeTruthy();
+})
