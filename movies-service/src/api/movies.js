@@ -1,4 +1,5 @@
-import validateMiddleware from "../middlewares/validateMiddleware.js  ";
+import { validateMovie } from "../middlewares/validateMiddleware.js";
+import logger from "../config/logger.js";
 
 export default (app, repository) => {
   app.get("/movies/premieres", async (req, res, next) => {
@@ -18,7 +19,7 @@ export default (app, repository) => {
     res.json(movie);
   });
 
-  app.post("/movies", validateMiddleware.validateMovie, async (req, res, next) => {
+  app.post("/movies", validateMovie, async (req, res, next) => {
     const titulo = req.body.titulo;
     const sinopse = req.body.sinopse;
     const duracao = parseInt(req.body.duracao);
@@ -35,22 +36,19 @@ export default (app, repository) => {
       categorias,
     });
 
-    console.log(
+    logger.info(
       `User ${res.locals.userId} added the movie ${result._id} at ${new Date()}`
     );
     res.status(201).json(result);
   });
 
-  app.delete(
-    "/movies/:id",
-    async (req, res, next) => {
-      const id = req.params.id;
-      const result = await repository.deleteMovie(id);
+  app.delete("/movies/:id", async (req, res, next) => {
+    const id = req.params.id;
+    const result = await repository.deleteMovie(id);
 
-      console.log(
-        `User ${res.locals.userId} deleted the movie ${id} at ${new Date()}`
-      );
-      res.sendStatus(204);
-    }
-  );
+    console.log(
+      `User ${res.locals.userId} deleted the movie ${id} at ${new Date()}`
+    );
+    res.sendStatus(204);
+  });
 };

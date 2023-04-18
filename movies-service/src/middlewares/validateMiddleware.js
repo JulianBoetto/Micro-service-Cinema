@@ -1,7 +1,7 @@
 import movieSchema from "../schemas/movieSchema.js";
 
 function validateMovie(req, res, next) {
-  const { error } = movieSchema(req.body);
+  const { error } = movieSchema.validate(req.body);
   console.log(error);
   if (error) {
     const { details } = error;
@@ -11,6 +11,6 @@ function validateMovie(req, res, next) {
   next();
 }
 
-export default {
+export {
   validateMovie,
 };

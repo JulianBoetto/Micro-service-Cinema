@@ -2,6 +2,7 @@ import "express-async-errors";
 import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
+import logger from "../config/logger.js";
 
 let server = null;
 const MS_NAME = process.env.MS_NAME;
@@ -21,7 +22,7 @@ async function start(api, repository) {
   api(app, repository);
 
   app.use((err, req, res, next) => {
-    console.error(err);
+    logger.error(err.stack);
     res.sendStatus(500);
   });
 
