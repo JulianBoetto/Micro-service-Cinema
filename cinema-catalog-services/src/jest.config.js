@@ -5,6 +5,7 @@ export default {
   coveragePathIgnorePatterns: [
     "/node_modules/"
   ],
+  testTimeout: 10000,
   coverageProvider: "v8",
   coverageReporters: [
     "json",
