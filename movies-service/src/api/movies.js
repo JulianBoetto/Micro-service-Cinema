@@ -1,3 +1,5 @@
+import validateMiddleware from "../middlewares/validateMiddleware.js";
+
 export default (app, repository) => {
   app.get("/movies/premieres", async (req, res, next) => {
     const movies = await repository.getMoviePremieres();
@@ -16,7 +18,7 @@ export default (app, repository) => {
     res.json(movie);
   });
 
-  app.post("/movies", async (req, res, next) => {
+  app.post("/movies", validateMiddleware.validateMovie, async (req, res, next) => {
     const titulo = req.body.titulo;
     const sinopse = req.body.sinopse;
     const duracao = parseInt(req.body.duracao);
