@@ -13,23 +13,24 @@ async function start(api, repository) {
   app.use(express.json());
 
   app.get("/health", (req, res, next) => {
-    res
-      .status(200)
-      .send(`The service ${MS_NAME} is running at ${process.env.PORT}`);
+    res.send(
+      `The service ${MS_NAME} is running at ${process.env.PORT}`
+    );
   });
 
   api(app, repository);
 
-  app.use((err, req, res, next) => {
-    console.error(err);
+  app.use((error, req, res, next) => {
+    console.error(error.stack);
     res.sendStatus(500);
   });
 
   server = app.listen(process.env.PORT, () => {
     console.log(
-      `The service ${MS_NAME} already started at ${process.env.PORT}`
+      `The service ${process.env.MS_NAME} already started at ${process.env.PORT}`
     );
   });
+
   return server;
 }
 
