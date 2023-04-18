@@ -65,4 +65,8 @@ async function getMoviePremieres() {
     return [movies[0]];
 }
 
-export default { getAllMovies, getMovieById, getMoviePremieres }
+async function addMovie(movie) {
+    return movies[0];
+}
+
+export default { getAllMovies, getMovieById, getMoviePremieres, addMovie }

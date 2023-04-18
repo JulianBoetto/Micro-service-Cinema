@@ -19,8 +19,20 @@ async function getMoviePremieres() {
     return db.collection("movies").find({ dataLancamento: { $gte: monthAgo } }).toArray();
 }
 
+async function addMovie(movie) {
+    const db = await database.connect();
+    const result = await db.collection('movies').insertOne(movie);
+    movie._id = result.insertedId;
+    return movie;
+}
+
+async function deleteMovie(id) {
+    const db = await database.connect();
+    return db.collection('movies').deleteOne({ _id: new ObjectId(id) });
+}
+
 async function disconnect() {
     return database.disconnect();
 }
 
-export default { getAllMovies, getMovieById, getMoviePremieres, disconnect }
+export default { getAllMovies, getMovieById, getMoviePremieres, addMovie, deleteMovie, disconnect }

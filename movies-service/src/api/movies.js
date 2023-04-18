@@ -15,4 +15,18 @@ export default (app, repository) => {
         
         res.json(movie);
     })
+
+    app.post('/movies', async (req, res, next) => {
+        const titulo = req.body.titulo;
+        const sinopse = req.body.sinopse;
+        const duracao = parseInt(req.body.duracao);
+        const dataLancamento = new Date(req.body.dataLancamento);
+        const imagem = req.body.imagem;
+        const categorias = req.body.categorias;
+
+        const result = await repository.addMovie({ titulo, sinopse, duracao, dataLancamento, imagem, categorias });
+
+        console.log(`User ${res.locals.userId} added the movie ${result._id} at ${new Date()}`);
+        res.status(201).json(result);
+    })
 }
