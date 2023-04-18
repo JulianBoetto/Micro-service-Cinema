@@ -1,7 +1,7 @@
-import { validate } from "../schemas/movieSchema.js";
+import movieSchema from "../schemas/movieSchema.js";
 
 function validateMovie(req, res, next) {
-  const { error } = validate(req.body);
+  const { error } = movieSchema(req.body);
   console.log(error);
   if (error) {
     const { details } = error;

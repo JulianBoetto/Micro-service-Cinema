@@ -22,7 +22,8 @@
     "helmet": "^6.1.5",
     "joi": "^17.9.1",
     "mongodb": "^4.13.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "winston": "^3.8.2"
   },
   "devDependencies": {
     "jest": "^29.4.1",

@@ -1,22 +1,22 @@
-import { object, string, number, date, array } from 'joi';
+import joi from 'joi';
 
-const schema = object({
-    titulo: string()
+const movieSchema = joi.object({
+    titulo: joi.string()
         .required()
         .min(2)
         .max(150),
-    sinopse: string()
+    sinopse: joi.string()
         .min(10)
         .max(500),
-    duracao: number()
+    duracao: joi.number()
         .integer()
         .min(10),
-    dataLancamento: date()
+    dataLancamento: joi.date()
         .required(),
-    imagem: string()
+    imagem: joi.string()
         .required()
         .pattern(/https?:\/\/.+\.(jpe?g|png|gif|svg)/i),
-    categorias: array().items(string()).required()
+    categorias: joi.array().items(joi.string()).required()
 })
 
-export default schema;
+export default movieSchema;

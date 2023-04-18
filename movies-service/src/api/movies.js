@@ -1,4 +1,4 @@
-import validateMiddleware from "../middlewares/validateMiddleware.js";
+import validateMiddleware from "../middlewares/validateMiddleware.js  ";
 
 export default (app, repository) => {
   app.get("/movies/premieres", async (req, res, next) => {
