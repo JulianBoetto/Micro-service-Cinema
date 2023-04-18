@@ -144,15 +144,14 @@ const cinemaCatalog = [{
 }]
 
 function getAllCities() {
-    // return cinemaCatalog.map(catalog => {
-    //     return {
-    //         _id: new ObjectId("605e57238ed0562b5da2f87e"),
-    //         pais: catalog.pais,
-    //         uf: catalog.uf,
-    //         cidade: catalog.cidade
-    //     }
-    // })
-    return "teste"
+    return cinemaCatalog.map(catalog => {
+        return {
+            _id: new ObjectId("605e57238ed0562b5da2f87e"),
+            pais: catalog.pais,
+            uf: catalog.uf,
+            cidade: catalog.cidade
+        }
+    })
 }
 
 function getCinemasByCityId(cityId) {

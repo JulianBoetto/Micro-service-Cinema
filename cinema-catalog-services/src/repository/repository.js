@@ -19,7 +19,22 @@ async function getCinemasByCityId(cityId) {
     return city.cinemas;
 }
 
+async function getMoviesByCinemaId(cinemaId) {
+    const objCinemaId = new ObjectId(cinemaId);
+    const db = await database.connect();
+    const group = await db.collection('cinema-catalog').aggregate([
+        { $match: { "cinemas._id": objCinemaId } },
+        { $unwind: "$cinemas" },
+        { $unwind: "$cinemas.salas" },
+        { $unwind: "$cinemas.salas.sessoes" },
+        { $group: { _id: { titulo: "$cinemas.salas.sessoes.filme", _id: "$cinemas.salas.sessoes.idFilme" } } }
+    ]).toArray();
+
+    return group.map(g => g._id);
+}
+
 export default {
   getAllCities,
   getCinemasByCityId,
+  getMoviesByCinemaId
 };
