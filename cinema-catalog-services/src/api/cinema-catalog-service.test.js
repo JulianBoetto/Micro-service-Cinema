@@ -42,8 +42,16 @@ describe("Cinema Catalog Services 200 OK", () => {
 
   test("GET /cities/:cityId/cinemas 200 OK", async () => {
     const testCityId = "1";
+    const response = await request(app).get(`/cities/${testCityId}/cinemas`);
+    expect(response.status).toEqual(200);
+    expect(response.body).toBeTruthy();
+  });
+
+  test("GET /cinemas/:cinemaId/movies/:movieId 200 OK", async () => {
+    const testCinemaId = "1";
+    const testMovieId = "1";
     const response = await request(app)
-      .get(`/cities/${testCityId}/cinemas`)
+      .get(`/cinemas/${testCinemaId}/movies/${testMovieId}`)
     expect(response.status).toEqual(200);
     expect(response.body).toBeTruthy();
   });
