@@ -9,8 +9,8 @@ const MS_NAME = process.env.MS_NAME;
 async function start(api, repository) {
   const app = express();
   app.use(morgan("dev"));
-  app.use(helmet);
-  app.use(express.json);
+  app.use(helmet());
+  app.use(express.json());
 
   app.get("/health", (req, res, next) => {
     res
@@ -25,7 +25,11 @@ async function start(api, repository) {
     res.sendStatus(500);
   });
 
-  server = app.listen(process.env.PORT);
+  server = app.listen(process.env.PORT, () => {
+    console.log(
+      `The service ${MS_NAME} already started at ${process.env.PORT}`
+    );
+  });
   return server;
 }
 

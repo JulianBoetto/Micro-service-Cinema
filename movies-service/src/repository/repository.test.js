@@ -56,3 +56,18 @@ test("Disconnection Repository", async () => {
   const isDisconnected = await repository.disconnect();
   expect(isDisconnected).toBeTruthy();
 });
+
+test("deleteMovie", async () => {
+  const movie = {
+    titulo: "Test Movie",
+    sinopse: "Movie Summary",
+    duracao: 120,
+    dataLancamento: new Date(),
+    imagem: "image.jpg",
+    categorias: ["Aventura"],
+  };
+
+  const result = await repository.addMovie(movie);
+  const result2 = await repository.deleteMovie(result._id);
+  expect(result2).toBeTruthy();
+});

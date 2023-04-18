@@ -31,8 +31,4 @@ async function deleteMovie(id) {
     return db.collection('movies').deleteOne({ _id: new ObjectId(id) });
 }
 
-async function disconnect() {
-    return database.disconnect();
-}
-
-export default { getAllMovies, getMovieById, getMoviePremieres, addMovie, deleteMovie, disconnect }
+export default { getAllMovies, getMovieById, getMoviePremieres, addMovie, deleteMovie }

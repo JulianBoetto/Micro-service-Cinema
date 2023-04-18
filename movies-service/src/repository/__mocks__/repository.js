@@ -69,4 +69,9 @@ async function addMovie(movie) {
     return movies[0];
 }
 
-export default { getAllMovies, getMovieById, getMoviePremieres, addMovie }
+async function deleteMovie(id) {
+    if (!id) throw new Error('Não foi possível excluir este filme!');
+    return true;
+}
+
+export default { getAllMovies, getMovieById, getMoviePremieres, addMovie, deleteMovie }
