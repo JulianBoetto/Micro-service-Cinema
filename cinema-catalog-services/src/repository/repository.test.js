@@ -43,3 +43,9 @@ test('getMovieSessionsByCityId', async () => {
     expect(Array.isArray(movieSessions)).toBeTruthy();
     expect(movieSessions.length).toBeTruthy();
 })
+
+test('getMovieSessionsByCinemaId', async () => {
+    const movieSessions = await repository.getMovieSessionsByCinemaId(movieId, cinemaId);
+    expect(Array.isArray(movieSessions)).toBeTruthy();
+    expect(movieSessions.length).toBeTruthy();
+})
