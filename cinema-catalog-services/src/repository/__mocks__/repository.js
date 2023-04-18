@@ -1,53 +1,147 @@
-const movies = [
-    {
-        "_id": "63d8791840a077c381f3baa9",
-        "titulo": "Os Vingadores: Ultimato",
-        "sinopse": "Os heróis mais poderosos da Terra enfrentando o Thanos. De novo.",
-        "duracao": 181,
-        "dataLancamento": new Date("2022-12-25T00:00:00Z"),
-        "imagem": "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_UX182_CR0,0,182,268_AL_.jpg",
-        "categorias": [
-            "Aventura",
-            "Ação"
-        ]
-    },
-    {
-        "_id": "63d8791840a077c381f3baaa",
-        "titulo": "Os Vingadores: Guerra Infinita",
-        "sinopse": "Os heróis mais poderosos da Terra enfrentando o Thanos",
-        "duracao": 149,
-        "dataLancamento": new Date("2018-04-26T00:00:00Z"),
-        "imagem": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_UX182_CR0,0,182,268_AL_.jpg",
-        "categorias": [
-            "Aventura",
-            "Ação"
-        ]
-    },
-    {
-        "_id": "63d8791840a077c381f3baab",
-        "titulo": "Os Vingadores: Era de Ultron",
-        "sinopse": "Os heróis mais poderosos da Terra enfrentando o Ultron",
-        "duracao": 141,
-        "dataLancamento": new Date("2023-01-23T00:00:00Z"),
-        "imagem": "https://m.media-amazon.com/images/M/MV5BMTM4OGJmNWMtOTM4Ni00NTE3LTg3MDItZmQxYjc4N2JhNmUxXkEyXkFqcGdeQXVyNTgzMDMzMTg@._V1_UX182_CR0,0,182,268_AL_.jpg",
-        "categorias": [
-            "Aventura",
-            "Ação"
-        ]
-    },
-    {
-        "_id": "63d8791840a077c381f3baac",
-        "titulo": "Os Vingadores",
-        "sinopse": "Os heróis mais poderosos da Terra enfrentando o Loki",
-        "duracao": 143,
-        "dataLancamento": new Date("2012-04-27T00:00:00Z"),
-        "imagem": "https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL_.jpg",
-        "categorias": [
-            "Aventura",
-            "Ação"
-        ]
-    }
-]
+const cinemaCatalog = [{
+    cidade: "Gravataí",
+    uf: "RS",
+    cinemas: []
+}, {
+    cidade: "Porto Alegre",
+    uf: "RS",
+    pais: "BR",
+    cinemas: [{
+        _id: new ObjectId("605e57238ed0562b5da2f87d"),
+        nome: "Cinemark Bourbon Ipiranga",
+        salas: [{
+            nome: 1,
+            sessoes: [{
+                data: new Date("2021-03-01T09:00:00Z"),
+                idFilme: "63d8791840a077c381f3baaa",
+                filme: "Vingadores: Guerra Infinita",
+                valor: 25.00,
+                assentos: [{
+                    numero: 1,
+                    disponivel: true
+                }, {
+                    numero: 2,
+                    disponivel: false
+                }]
+            }, {
+                data: new Date("2021-03-01T11:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baaa"),
+                filme: "Vingadores: Guerra Infinita",
+                valor: 25.00,
+                assentos: [{
+                    numero: 1,
+                    disponivel: true
+                }, {
+                    numero: 2,
+                    disponivel: true
+                },]
+            }, {
+                data: new Date("2021-06-01T13:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baab"),
+                filme: "Vingadores: Era de Ultron",
+                valor: 20.00,
+                assentos: [{
+                    numero: 1,
+                    disponivel: true
+                }, {
+                    numero: 2,
+                    disponivel: false
+                }, {
+                    numero: 2,
+                    disponivel: true
+                },]
+            }]
+        }, {
+            nome: 2,
+            sessoes: [{
+                data: new Date("2021-03-01T09:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baab"),
+                filme: "Vingadores: Era de Ultron",
+                valor: 25.00,
+                assentos: [{
+                    numero: 1,
+                    disponivel: true
+                }, {
+                    numero: 2,
+                    disponivel: false
+                },]
+            }, {
+                data: new Date("2021-03-01T11:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baa9"),
+                filme: "Vingadores: Ultimato",
+                valor: 25.00,
+                assentos: [{
+                    numero: 1,
+                    disponivel: true
+                }, {
+                    numero: 2,
+                    disponivel: true
+                },]
+            }, {
+                data: new Date("2021-03-01T13:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baa9"),
+                filme: "Vingadores: Ultimato",
+                valor: 20.00,
+                assentos: [{
+                    numero: 1,
+                    disponivel: true
+                }, {
+                    numero: 2,
+                    disponivel: false
+                }, {
+                    numero: 2,
+                    disponivel: true
+                },]
+            }]
+        }]
+    }, {
+        _id: new ObjectId("605e57238ed0562b5da2f87c"),
+        nome: "GNC Lindóia",
+        salas: [{
+            nome: 100,
+            sessoes: [{
+                data: new Date("2021-03-30T19:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baa9"),
+                filme: "Vingadores: Ultimato",
+                valor: 25.00,
+                assentos: [{
+                    numero: 1,
+                    disponivel: true
+                }, {
+                    numero: 2,
+                    disponivel: false
+                },]
+            }, {
+                data: new Date("2021-03-30T11:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baa9"),
+                filme: "Vingadores: Ultimato",
+                valor: 25.00,
+                assentos: [{
+                    numero: 1,
+                    disponivel: true
+                }, {
+                    numero: 2,
+                    disponivel: true
+                },]
+            }, {
+                data: new Date("2021-03-30T13:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baab"),
+                filme: "Vingadores: Era de Ultron",
+                valor: 20.00,
+                assentos: [{
+                    numero: 1,
+                    disponivel: true
+                }, {
+                    numero: 2,
+                    disponivel: false
+                }, {
+                    numero: 2,
+                    disponivel: true
+                },]
+            }]
+        }]
+    }]
+}]
 
 async function getAllMovies() {
     return movies;
