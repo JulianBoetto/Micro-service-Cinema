@@ -143,20 +143,59 @@ const cinemaCatalog = [{
     }]
 }]
 
-async function getAllMovies() {
-    return movies;
+function getAllCities() {
+    return cinemaCatalog.map(catalog => {
+        return {
+            _id: new ObjectId("605e57238ed0562b5da2f87e"),
+            pais: catalog.pais,
+            uf: catalog.uf,
+            cidade: catalog.cidade
+        }
+    })
 }
 
-async function getMovieById(id) {
-    if (id == -1) return null;
-    
-    movies[0]._id = id;
-    return movies[0];
+function getCinemasByCityId(cityId) {
+    if (cityId < 0) return null;
+    return cinemaCatalog[cinemaCatalog.length - 1].cinemas;
 }
 
-async function getMoviePremieres() {
-    movies[0].dataLancamento = new Date();
-    return [movies[0]];
+function getMoviesByCinemaId(cinemaId) {
+    if (cinemaId < 0) return null;
+    return getCinemasByCityId().map(cinema => {
+        return {
+            titulo: cinema.salas[0].sessoes[0].filme,
+            _id: cinema.salas[0].sessoes[0].idFilme
+        }
+    })
 }
 
-export default { getAllMovies, getMovieById, getMoviePremieres }
+async function getMoviesByCityId(cityId) {
+    return getMoviesByCinemaId(cityId);
+}
+
+async function getMovieSessionsByCityId(movieId, cityId) {
+    if (movieId < 0 || cityId < 0) return null;
+    return getCinemasByCityId().map(cinema => {
+        return {
+            titulo: cinema.salas[0].sessoes[0].filme,
+            _id: cinema.salas[0].sessoes[0].idFilme,
+            cinema: cinema.nome,
+            idCinema: cinema._id,
+            sala: cinema.salas[0].nome,
+            sessao: cinema.salas[0].sessoes[0]
+        }
+    });
+}
+
+async function getMovieSessionsByCinemaId(movieId, cinemaId) {
+    return getMovieSessionsByCityId(movieId, cinemaId);
+}
+
+export default {
+    getAllCities,
+    getCinemasByCityId,
+    getMoviesByCinemaId,
+    getMoviesByCityId,
+    getMovieSessionsByCityId,
+    getMovieSessionsByCinemaId
+}
