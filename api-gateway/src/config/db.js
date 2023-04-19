@@ -7,10 +7,11 @@ async function connect() {
   try {
     await client.connect();
     console.log("Successfully connected to MongoDB cluster");
+    return client.db(process.env.DATABASE_NAME);
   } catch (error) {
     console.error("Error connecting to MongoDB cluster: ", error);
+    return;
   }
-  return client.db(process.env.DATABASE_NAME);
 }
 
 async function disconnect() {
