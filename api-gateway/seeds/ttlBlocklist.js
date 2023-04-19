@@ -1,4 +1,4 @@
-db.blacklist.createIndex(
+db.blocklist.createIndex(
   {
     data: 1,
   },
