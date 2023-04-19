@@ -1,4 +1,4 @@
-import { test, expect } from "@jest/globals";
+import { test, expect, beforeAll } from "@jest/globals";
 import repository from "./repository.js";
 
 let cityId = null;
