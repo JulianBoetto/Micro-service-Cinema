@@ -1,19 +1,32 @@
-import { test, expect, jest } from "@jest/globals";
+import {
+  test,
+  expect,
+  jest,
+  beforeEach,
+  afterEach,
+  beforeAll,
+  afterAll,
+} from "@jest/globals";
 import server from "../server/server.js";
 import cinemaCatalog from "./cinema-catalog-service.js";
 import repositoryMock from "../repository/__mocks__/repository.js";
 import request from "supertest";
+import jwt from "jsonwebtoken";
 
 const adminToken = "1";
 const guestToken = "2";
 
-// jest.mock(jsonwebtoken, () => ({
-//   verify: (token) => {
-//     if (token === adminToken) return { userId: 1, profileId: 1 }; //ADMIN
-//     else if (token === guestToken) return { userId: 2, profileId: 2 }; //GUEST
-//     else throw new Error("Invalid token!");
-//   },
-// }));
+beforeEach(() => {
+  jest.spyOn(jwt, "verify").mockImplementation((token, secret, callback) => {
+    if (token === adminToken) return { userId: 1, profileId: 1 }; //ADMIN
+    else if (token === guestToken) return { userId: 2, profileId: 2 }; //GUEST
+    else throw new Error("Invalid token!");
+  });
+});
+
+afterEach(() => {
+  jest.restoreAllMocks();
+});
 
 let app = null;
 
@@ -48,16 +61,18 @@ describe("Cinema Catalog Services 200 OK", () => {
   test("GET /cities/:cityId/movies/:movieId 200 OK", async () => {
     const testCityId = "1";
     const testMovieId = "1";
-    const response = await request(app).get(
-      `/cities/${testCityId}/movies/${testMovieId}`
-    );
+    const response = await request(app)
+      .get(`/cities/${testCityId}/movies/${testMovieId}`)
+      .set("authorization", `Bearer ${adminToken}`);
     expect(response.status).toEqual(200);
     expect(response.body).toBeTruthy();
   });
 
   test("GET /cities/:cityId/cinemas 200 OK", async () => {
     const testCityId = "1";
-    const response = await request(app).get(`/cities/${testCityId}/cinemas`);
+    const response = await request(app)
+      .get(`/cities/${testCityId}/cinemas`)
+      .set("authorization", `Bearer ${adminToken}`);
     expect(response.status).toEqual(200);
     expect(response.body).toBeTruthy();
   });
@@ -65,9 +80,9 @@ describe("Cinema Catalog Services 200 OK", () => {
   test("GET /cinemas/:cinemaId/movies/:movieId 200 OK", async () => {
     const testCinemaId = "1";
     const testMovieId = "1";
-    const response = await request(app).get(
-      `/cinemas/${testCinemaId}/movies/${testMovieId}`
-    );
+    const response = await request(app)
+      .get(`/cinemas/${testCinemaId}/movies/${testMovieId}`)
+      .set("authorization", `Bearer ${adminToken}`);
     expect(response.status).toEqual(200);
     expect(response.body).toBeTruthy();
   });
@@ -120,7 +135,9 @@ describe("Cinema Catalog Services 401/404 ERROR", () => {
 
   test("GET /cities/:cityId/cinemas 404 NOT FOUND", async () => {
     const testCityId = "-1";
-    const response = await request(app).get(`/cities/${testCityId}/cinemas`);
+    const response = await request(app)
+      .get(`/cities/${testCityId}/cinemas`)
+      .set("authorization", `Bearer ${adminToken}`);
     expect(response.status).toEqual(404);
   });
 
@@ -128,14 +145,6 @@ describe("Cinema Catalog Services 401/404 ERROR", () => {
     const testCityId = "1";
     const response = await request(app).get(`/cities/${testCityId}/cinemas`);
     expect(response.status).toEqual(401);
-  });
-
-  test("GET /cities/:cityId/cinemas 404 NOT FOUND", async () => {
-    const testCityId = "-1";
-    const response = await request(app)
-      .get(`/cities/${testCityId}/cinemas`)
-      .set("authorization", `Bearer ${adminToken}`);
-    expect(response.status).toEqual(404);
   });
 
   test("GET /cinemas/:cinemaId/movies 401", async () => {

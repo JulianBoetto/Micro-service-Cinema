@@ -4,8 +4,6 @@ import jwt from "jsonwebtoken";
 const ADMIN_PROFILE = 1;
 
 function validateMovie(req, res, next) {
-  if (!req.body) return res.sendStatus(422);
-
   const { error } = movieSchema.validate(req.body);
   console.log(error);
   if (error) {

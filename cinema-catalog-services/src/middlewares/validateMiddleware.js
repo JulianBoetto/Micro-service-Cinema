@@ -1,4 +1,5 @@
-import { verify } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+
 
 function validateToken(req, res, next) {
   let token = req.headers["authorization"];
@@ -7,7 +8,7 @@ function validateToken(req, res, next) {
   token = token.replace("Bearer ", "");
 
   try {
-    const { userId } = verify(token, process.env.SECRET);
+    const { userId } = jwt.verify(token, process.env.SECRET);
     res.locals.userId = userId;
     next();
   } catch (err) {

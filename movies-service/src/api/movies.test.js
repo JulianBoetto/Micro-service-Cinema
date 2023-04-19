@@ -11,7 +11,7 @@ const adminToken = "1";
 const guestToken = "2";
 
 beforeEach(() => {
-  jest.spyOn(jwt, "verify").mockImplementation((token, secret, callback) => {
+  jest.spyOn(jwt, "verify").mockImplementation((token, secret) => {
     if (token === adminToken) return { userId: 1, profileId: 1 }; //ADMIN
     else if (token === guestToken) return { userId: 2, profileId: 2 }; //GUEST
     else throw new Error("Invalid token!");
