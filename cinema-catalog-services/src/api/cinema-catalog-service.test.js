@@ -77,6 +77,15 @@ describe("Cinema Catalog Services 200 OK", () => {
     expect(response.body).toBeTruthy();
   });
 
+  test("GET /cinemas/:cinemaId/movies 200 OK", async () => {
+    const testCinemaId = "1";
+    const response = await request(app)
+      .get(`/cinemas/${testCinemaId}/movies`)
+      .set("authorization", `Bearer ${adminToken}`);
+    expect(response.status).toEqual(200);
+    expect(response.body).toBeTruthy();
+  });
+
   test("GET /cinemas/:cinemaId/movies/:movieId 200 OK", async () => {
     const testCinemaId = "1";
     const testMovieId = "1";
