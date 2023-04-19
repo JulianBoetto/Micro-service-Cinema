@@ -13,15 +13,15 @@ async function getUser(email, password) {
   return user;
 }
 
-async function blacklistToken(token) {
-  const db = await connect();
-  return db.collection("blacklist").insertOne({ _id: token, data: new Date() });
+async function blocklistToken(token) {
+  const db = await database.connect();
+  return db.collection("blocklist").insertOne({ _id: token, data: new Date() });
 }
 
-async function checkBlacklist(token) {
-  const db = await connect();
-  const qtd = await db.collection("blacklist").countDocuments({ _id: token });
+async function checkBlocklist(token) {
+  const db = await database.connect();
+  const qtd = await db.collection("blocklist").countDocuments({ _id: token });
   return qtd > 0;
 }
 
-export default { getUser, blacklistToken, checkBlacklist };
+export default { getUser, blocklistToken, checkBlocklist };

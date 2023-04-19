@@ -21,14 +21,14 @@ async function doLogin(req, res, next) {
   }
 }
 
-async function validateBlacklist(req, res, next) {
+async function validateBlocklist(req, res, next) {
   let token = req.headers["authorization"];
   if (!token) return next();
 
   token = token.replace("Bearer ", "");
-  const isBlacklisted = await repository.checkBlacklist(token);
+  const isBlocklisted = await repository.checkBlocklist(token);
 
-  if (isBlacklisted) return res.sendStatus(401);
+  if (isBlocklisted) return res.sendStatus(401);
   else next();
 }
 
@@ -63,7 +63,7 @@ async function doLogout(req, res, next) {
   let token = req.headers["authorization"];
   token = token.replace("Bearer ", "");
 
-  await repository.blacklistToken(token);
+  await repository.blocklistToken(token);
   res.sendStatus(200);
 }
 
@@ -71,6 +71,6 @@ export default {
   doLogin,
   doLogout,
   validateToken,
-  validateBlacklist,
+  validateBlocklist,
   validateLoginSchema,
 };

@@ -20,9 +20,9 @@ const options = {
 
 app.post("/login", authController.validateLoginSchema, authController.doLogin);
 
-app.use(authController.validateBlacklist);
+app.use(authController.validateBlocklist);
 
-app.post("/logout", authController.validateToken, authController.doLogout);
+app.delete("/logout", authController.validateToken, authController.doLogout);
 
 const moviesServiceProxy = httpProxy(process.env.MOVIES_API, options);
 const catalogServiceProxy = httpProxy(process.env.CATALOG_API, options);

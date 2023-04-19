@@ -1,4 +1,5 @@
 import movieSchema from "../schemas/movieSchema.js";
+import jwt from 'jsonwebtoken';
 
 function validateMovie(req, res, next) {
   const { error } = movieSchema.validate(req.body);
