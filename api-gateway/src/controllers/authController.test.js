@@ -1,8 +1,9 @@
-import { test, expect, beforeAll, afterAll } from "@jest/globals";
+import { test, expect, beforeAll, afterAll, jest } from "@jest/globals";
 import app from "../server/index";
 import request from "supertest";
 import repository from "../repository/repository.js";
 import { ObjectId } from "mongodb";
+import authController from "./authController";
 
 const loginOk = {
   email: "julib_8724@hotmail.com",
@@ -33,59 +34,96 @@ afterAll(async () => {
   app.close();
 });
 
-test("POST /login/ 200 OK", async () => {
-  const response = await request(app)
-    .post("/login/")
-    .set("Content-Type", "application/json")
-    .send(loginOk);
+describe("Login/Logout SUCCESS", () => {
+  test("POST /login/ 200 OK", async () => {
+    const response = await request(app)
+      .post("/login/")
+      .set("Content-Type", "application/json")
+      .send(loginOk);
 
-  expect(response.status).toEqual(200);
-  expect(response.body.token).toBeTruthy();
+    expect(response.status).toEqual(200);
+    expect(response.body.token).toBeTruthy();
+  });
+
+  test("DELETE /logout/ 200 OK", async () => {
+    const response = await request(app)
+      .delete("/logout/")
+      .set("Content-Type", "application/json")
+      .set("authorization", `Bearer ${token}`);
+
+    expect(response.status).toEqual(200);
+  });
 });
 
-test("POST /login/ 422 UNPROCESSABLE ENTITY", async () => {
-  loginOk.data = new Date();
+describe("Login/Logout ERRORS", () => {
+  test("POST /login/ 422 UNPROCESSABLE ENTITY", async () => {
+    loginOk.data = new Date();
 
-  const response = await request(app)
-    .post("/login/")
-    .set("Content-Type", "application/json")
-    .send(loginOk);
+    const response = await request(app)
+      .post("/login/")
+      .set("Content-Type", "application/json")
+      .send(loginOk);
 
-  expect(response.status).toEqual(422);
+    expect(response.status).toEqual(422);
+  });
+
+  test("POST /login/ 401 UNAUTHORIZED", async () => {
+    const response = await request(app)
+      .post("/login/")
+      .set("Content-Type", "application/json")
+      .send(loginNOk);
+
+    expect(response.status).toEqual(401);
+  });
+
+  test("DELETE /logout/ 401", async () => {
+    const response = await request(app)
+      .delete("/logout/")
+      .set("Content-Type", "application/json")
+      .set("authorization", `Bearer ${token}1`);
+
+    expect(response.status).toEqual(401);
+  });
+  test("DELETE /logout/ 401 (Blacklist)", async () => {
+    const response = await request(app)
+      .delete("/logout/")
+      .set("Content-Type", "application/json")
+      .set("authorization", `Bearer ${tokenBlocklist}`);
+
+    expect(response.status).toEqual(401);
+  });
 });
 
-test("POST /login/ 401 UNAUTHORIZED", async () => {
-  const response = await request(app)
-    .post("/login/")
-    .set("Content-Type", "application/json")
-    .send(loginNOk);
+jest.mock("jsonwebtoken");
 
-  expect(response.status).toEqual(401);
-});
+describe("validateToken & validateBlocklist", () => {
+  it("should return a 401 status if there is no token in the request headers", async () => {
+    const req = {
+      headers: {},
+    };
+    const res = {
+      sendStatus: jest.fn(),
+    };
+    const next = jest.fn();
 
-test("DELTE /logout/ 200 OK", async () => {
-  const response = await request(app)
-    .delete("/logout/")
-    .set("Content-Type", "application/json")
-    .set("authorization", `Bearer ${token}`);
+    await authController.validateToken(req, res, next);
 
-  expect(response.status).toEqual(200);
-});
+    expect(res.sendStatus).toHaveBeenCalledWith(401);
+    expect(next).not.toHaveBeenCalled();
+  });
 
-test("DELETE /logout/ 401", async () => {
-  const response = await request(app)
-    .delete("/logout/")
-    .set("Content-Type", "application/json")
-    .set("authorization", `Bearer ${token}1`);
+  it("should call next() if there is no token in the request headers", async () => {
+    const req = {
+      headers: {},
+    };
+    const res = {
+      sendStatus: jest.fn(),
+    };
+    const next = jest.fn();
 
-  expect(response.status).toEqual(401);
-});
+    await authController.validateBlocklist(req, res, next);
 
-test("DELETE /logout/ 401 (Blacklist)", async () => {
-  const response = await request(app)
-    .delete("/logout/")
-    .set("Content-Type", "application/json")
-    .set("authorization", `Bearer ${tokenBlocklist}`);
-
-  expect(response.status).toEqual(401);
+    expect(next).toHaveBeenCalled();
+    expect(res.sendStatus).not.toHaveBeenCalled();
+  });
 });
