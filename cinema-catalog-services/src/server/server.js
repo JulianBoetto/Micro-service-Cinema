@@ -10,6 +10,7 @@ async function start(api, repository) {
   const app = express();
   app.use(morgan("dev"));
   app.use(helmet());
+  app.use(express.json());
 
   app.get("/health", (req, res, next) => {
     res.send(

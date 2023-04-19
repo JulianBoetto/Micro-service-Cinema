@@ -1,7 +1,11 @@
 import movieSchema from "../schemas/movieSchema.js";
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
+
+const ADMIN_PROFILE = 1;
 
 function validateMovie(req, res, next) {
+  if (!req.body) return res.sendStatus(422);
+
   const { error } = movieSchema.validate(req.body);
   console.log(error);
   if (error) {
@@ -13,23 +17,26 @@ function validateMovie(req, res, next) {
 }
 
 function validateToken(req, res, next) {
-  let token = req.headers['authorization'];
+  let token = req.headers["authorization"];
   if (!token) return res.sendStatus(401);
 
-  token = token.replace('Bearer ', '');
+  token = token.replace("Bearer ", "");
 
   try {
-      const { userId, profileId } = jwt.verify(token, process.env.SECRET);
-      res.locals.userId = userId;
-      res.locals.profileId = profileId;
-      next();
+    const { userId, profileId } = jwt.verify(token, process.env.SECRET);
+    res.locals.userId = userId;
+    res.locals.profileId = profileId;
+    next();
   } catch (err) {
-      console.log(err);
-      res.sendStatus(401);
+    console.log(err);
+    res.sendStatus(401);
   }
 }
 
-export {
-  validateMovie,
-  validateToken
-};
+function validateAdmin(req, res, next) {
+  const { profileId } = res.locals;
+  if (profileId == ADMIN_PROFILE) next();
+  else res.sendStatus(403);
+}
+
+export { validateMovie, validateToken, validateAdmin };

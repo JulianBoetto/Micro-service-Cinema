@@ -1,11 +1,12 @@
 import {
   validateMovie,
   validateToken,
+  validateAdmin
 } from "../middlewares/validateMiddleware.js";
 import logger from "../config/logger.js";
 
 export default (app, repository) => {
-  app.get("/movies/premieres", async (req, res, next) => {
+  app.get("/movies/premieres", validateToken, async (req, res, next) => {
     const movies = await repository.getMoviePremieres();
     res.json(movies);
   });
@@ -22,36 +23,49 @@ export default (app, repository) => {
     res.json(movie);
   });
 
-  app.post("/movies", validateToken, validateMovie, async (req, res, next) => {
-    const titulo = req.body.titulo;
-    const sinopse = req.body.sinopse;
-    const duracao = parseInt(req.body.duracao);
-    const dataLancamento = new Date(req.body.dataLancamento);
-    const imagem = req.body.imagem;
-    const categorias = req.body.categorias;
+  app.post(
+    "/movies",
+    validateToken,
+    validateAdmin,
+    validateMovie,
+    async (req, res, next) => {
+      const titulo = req.body.titulo;
+      const sinopse = req.body.sinopse;
+      const duracao = parseInt(req.body.duracao);
+      const dataLancamento = new Date(req.body.dataLancamento);
+      const imagem = req.body.imagem;
+      const categorias = req.body.categorias;
 
-    const result = await repository.addMovie({
-      titulo,
-      sinopse,
-      duracao,
-      dataLancamento,
-      imagem,
-      categorias,
-    });
+      const result = await repository.addMovie({
+        titulo,
+        sinopse,
+        duracao,
+        dataLancamento,
+        imagem,
+        categorias,
+      });
 
-    logger.info(
-      `User ${res.locals.userId} added the movie ${result._id} at ${new Date()}`
-    );
-    res.status(201).json(result);
-  });
+      logger.info(
+        `User ${res.locals.userId} added the movie ${
+          result._id
+        } at ${new Date()}`
+      );
+      res.status(201).json(result);
+    }
+  );
 
-  app.delete("/movies/:id", validateToken, async (req, res, next) => {
-    const id = req.params.id;
-    const result = await repository.deleteMovie(id);
+  app.delete(
+    "/movies/:id",
+    validateToken,
+    validateAdmin,
+    async (req, res, next) => {
+      const id = req.params.id;
+      await repository.deleteMovie(id);
 
-    console.log(
-      `User ${res.locals.userId} deleted the movie ${id} at ${new Date()}`
-    );
-    res.sendStatus(204);
-  });
+      logger.info(
+        `User ${res.locals.userId} deleted the movie ${id} at ${new Date()}`
+      );
+      res.sendStatus(204);
+    }
+  );
 };
