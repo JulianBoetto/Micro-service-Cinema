@@ -1,4 +1,7 @@
-import { validateMovie } from "../middlewares/validateMiddleware.js";
+import {
+  validateMovie,
+  validateToken,
+} from "../middlewares/validateMiddleware.js";
 import logger from "../config/logger.js";
 
 export default (app, repository) => {
@@ -7,19 +10,19 @@ export default (app, repository) => {
     res.json(movies);
   });
 
-  app.get("/movies", async (req, res, next) => {
+  app.get("/movies", validateToken, async (req, res, next) => {
     const movies = await repository.getAllMovies();
     res.json(movies);
   });
 
-  app.get("/movies/:id", async (req, res, next) => {
+  app.get("/movies/:id", validateToken, async (req, res, next) => {
     const movie = await repository.getMovieById(req.params.id);
     if (!movie) return res.sendStatus(404);
 
     res.json(movie);
   });
 
-  app.post("/movies", validateMovie, async (req, res, next) => {
+  app.post("/movies", validateToken, validateMovie, async (req, res, next) => {
     const titulo = req.body.titulo;
     const sinopse = req.body.sinopse;
     const duracao = parseInt(req.body.duracao);
@@ -42,7 +45,7 @@ export default (app, repository) => {
     res.status(201).json(result);
   });
 
-  app.delete("/movies/:id", async (req, res, next) => {
+  app.delete("/movies/:id", validateToken, async (req, res, next) => {
     const id = req.params.id;
     const result = await repository.deleteMovie(id);
 
