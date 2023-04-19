@@ -87,6 +87,13 @@ describe("Movies 200 OK", () => {
     expect(response.status).toEqual(201);
     expect(response.body).toBeTruthy();
   });
+
+  test("DELETE /movies/:id 204 NO CONTENT", async () => {
+    const response = await request(app)
+      .delete("/movies/1")
+      .set("authorization", `Bearer ${adminToken}`);
+    expect(response.status).toEqual(204);
+  });
 });
 
 describe("Movies 401/404 ERROR", () => {
