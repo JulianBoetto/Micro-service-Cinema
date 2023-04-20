@@ -1,8 +1,10 @@
 import dbApi from "../config/db.js";
 import dbCinema from "../../../cinema-catalog-services/src/config/db.js";
+import dbMovie from "../../../movies-service/src/config/db.js";
 import usersSeed from "../../seeds/users.js";
 import ttlBlocklist from "../../seeds/ttlBlocklist.js";
-import cinemaCatalog from "../../../cinema-catalog-services/seeds/cinemaCatalog.js";
+import cinemaSeed from "../../seeds/cinemaCatalog.js";
+import movieSeed from "../../seeds/movies.js";
 
 const runSeeds = async () => {
   try {
@@ -36,14 +38,14 @@ const runSeeds = async () => {
     console.log("Trying insert cinema seeds...");
     const databaseCinema = await dbCinema.connect();
 
-    const cinemaSeed = await databaseCinema
+    const cinemaMetadata = await databaseCinema
       .collection("metadata")
       .findOne({ name: "cinemaSeeds" });
 
-    if (!cinemaSeed || !cinemaSeed.seeded) {
+    if (!cinemaMetadata || !cinemaMetadata.seeded) {
       await databaseCinema
         .collection("cinema-catalog-service")
-        .insertMany(cinemaCatalog);
+        .insertMany(cinemaSeed);
       console.log("Cinema seeds successfully inserted!");
       await databaseCinema
         .collection("metadata")
@@ -59,6 +61,35 @@ const runSeeds = async () => {
     console.error(error);
   } finally {
     await dbCinema.disconnect();
+  }
+
+  try {
+    console.log("Trying insert movie seeds...");
+    const databaseMovie = await dbMovie.connect();
+
+    const movieMetadata = await databaseMovie
+      .collection("metadata")
+      .findOne({ name: "movieSeeds" });
+
+    if (!movieMetadata || !movieMetadata.seeded) {
+      await databaseMovie
+        .collection("movies-service")
+        .insertMany(movieSeed);
+      console.log("Movie seeds successfully inserted!");
+      await databaseMovie
+        .collection("metadata")
+        .updateOne(
+          { name: "movieSeeds" },
+          { $set: { seeded: true } },
+          { upsert: true }
+        );
+    } else {
+      console.log("Movie seeds already executed, skipping...");
+    }
+  } catch (error) {
+    console.error(error);
+  } finally {
+    await dbMovie.disconnect();
   }
 };
 
