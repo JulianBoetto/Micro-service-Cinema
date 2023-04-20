@@ -6,7 +6,7 @@ module.exports = [
     title: "Os Vingadores: Ultimato",
     synopsis: "Os heróis mais poderosos da Terra enfrentando o Thanos. De novo.",
     duration: 181,
-    releaseDate: new Date("2022-08-02T00:00:00Z"),
+    releaseDate: new Date(),
     image:
       "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_UX182_CR0,0,182,268_AL_.jpg",
     categories: ["Aventura", "Ação"],

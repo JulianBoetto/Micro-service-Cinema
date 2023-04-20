@@ -12,7 +12,7 @@ module.exports = [
     pais: "BR",
     cinemas: [
       {
-        _id: new ObjectId(),
+        _id: new ObjectId("605e57238ed0562b5da2f87d"),
         nome: "Cinemark Bourbon Ipiranga",
         salas: [
           {
@@ -132,7 +132,7 @@ module.exports = [
         ],
       },
       {
-        _id: new ObjectId(),
+        _id: new ObjectId("605e57238ed0562b5da2f87c"),
         nome: "GNC Lindóia",
         salas: [
           {

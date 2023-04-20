@@ -44,7 +44,7 @@ const runSeeds = async () => {
 
     if (!cinemaMetadata || !cinemaMetadata.seeded) {
       await databaseCinema
-        .collection("cinema-catalog-service")
+        .collection("cinema-catalog")
         .insertMany(cinemaSeed);
       console.log("Cinema seeds successfully inserted!");
       await databaseCinema
@@ -73,7 +73,7 @@ const runSeeds = async () => {
 
     if (!movieMetadata || !movieMetadata.seeded) {
       await databaseMovie
-        .collection("movies-service")
+        .collection("movies")
         .insertMany(movieSeed);
       console.log("Movie seeds successfully inserted!");
       await databaseMovie
