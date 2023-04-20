@@ -7,10 +7,11 @@
   "scripts": {
     "dev": "node --watch -r dotenv/config server/index.js",
     "start": "node -r dotenv/config server/index.js",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles",
+    "db:seed": "node -r dotenv/config utils/runSeeds.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Julián Boetto",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
