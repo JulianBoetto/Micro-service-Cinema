@@ -65,13 +65,7 @@ See [environment variables](#environment) for more information.
    npm start
 ```
 
-## Environment Variables {#environment}
-
-
-```markdown
-## Features {#environment}
-```
-
+## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file (see the .env.example file in each service)
 
@@ -210,5 +204,3 @@ Here's an example of a POST request body to create a new movie:
 ## Feedback
 
 If you have any feedback, please reach out to us at [julib_8724@hotmail.com](mailto:julib_8724@hotmail.com)
-
-<h1 align="center">Hi 👋, I'm Julián Boetto</h1>
