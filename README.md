@@ -1,13 +1,18 @@
-# Cinema Micro Service
 
-A personal project with two microservices connected through an API
-gateway controlling routing. The API emulates a movie query system.
+<h1 align="center">Cinema Micro Service</h1>
 
-## Features
+<p align="center">A personal project with two microservices connected through an API
+gateway controlling routing. The API emulates a movie query system.</p>
+
+
+## Built With
 
 - EJS
-- MongoDB Cluster
+- MongoDB
 - Node v19
+- Javascript
+- jsonwebtoken
+- bcryptjs
 
 ## Installation
 
@@ -24,7 +29,6 @@ Copy the content of the .env.example file and paste it into the created .env fil
 ```bash
    npm start
 ```
-
 
 ### Cinema catalog service configuration
 
@@ -53,7 +57,6 @@ Copy the content of the .env.example file and paste it into the created .env fil
 ```bash
    npm start
 ```
-
 
 ## Environment Variables
 
@@ -91,7 +94,6 @@ To run this project, you will need to add the following environment variables to
 ```http
   GET /cities
 ```
-
 
 #### Get all cities
 
@@ -189,3 +191,5 @@ Here's an example of a POST request body to create a new movie:
 ## Feedback
 
 If you have any feedback, please reach out to us at [julib_8724@hotmail.com](mailto:julib_8724@hotmail.com)
+
+<h1 align="center">Hi 👋, I'm Julián Boetto</h1>
