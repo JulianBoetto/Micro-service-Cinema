@@ -5,10 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node --watch -r dotenv/config server/index.js",
-    "start": "node -r dotenv/config server/index.js",
+    "dev": "node --watch --require dotenv/config server/index.js",
+    "start": "node --require dotenv/config server/index.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles",
-    "db:seed": "node -r dotenv/config utils/runSeeds.js"
+    "db:seed": "node --require dotenv/config utils/runSeeds.js"
   },
   "keywords": [],
   "author": "Julián Boetto",
