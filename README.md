@@ -1,9 +1,7 @@
-
 <h1 align="center">Cinema Micro Service</h1>
 
 <p align="center">A personal project with two microservices connected through an API
 gateway controlling routing. The API emulates a movie query system.</p>
-
 
 ## Built With
 
@@ -26,9 +24,14 @@ gateway controlling routing. The API emulates a movie query system.</p>
 
 Copy the content of the .env.example file and paste it into the created .env file, completing each variable.
 
+See [environment variables](#environment) for more information.
+
 ```bash
+   npm run db:seed
    npm start
 ```
+
+`npm run db:seed` - For create all tables and insert all documents. Need a url string for mongoDB connection.
 
 ### Cinema catalog service configuration
 
@@ -39,6 +42,8 @@ Copy the content of the .env.example file and paste it into the created .env fil
 ```
 
 Copy the content of the .env.example file and paste it into the created .env file, completing each variable.
+
+See [environment variables](#environment) for more information.
 
 ```bash
    npm start
@@ -54,11 +59,19 @@ Copy the content of the .env.example file and paste it into the created .env fil
 
 Copy the content of the .env.example file and paste it into the created .env file, completing each variable.
 
+See [environment variables](#environment) for more information.
+
 ```bash
    npm start
 ```
 
-## Environment Variables
+## Environment Variables {#environment}
+
+
+```markdown
+## Features {#environment}
+```
+
 
 To run this project, you will need to add the following environment variables to your .env file (see the .env.example file in each service)
 
@@ -75,6 +88,12 @@ To run this project, you will need to add the following environment variables to
 `PORT` - port number for each service
 
 `SECRET` - jwt secret for each service
+
+To configure the `api-gateway service` .env file, the following variables need to be added:
+
+`MOVIES_API` - "localhost:3000"
+
+`CATALOG_API` - "localhost:3001"
 
 ## API Reference
 

@@ -1,4 +1,6 @@
-[
+const { ObjectId } = require("../src/node_modules/mongodb");
+
+module.exports = [
   {
     cidade: "Gravataí",
     uf: "RS",
@@ -10,15 +12,15 @@
     pais: "BR",
     cinemas: [
       {
-        _id: ObjectId(),
+        _id: new ObjectId("605e57238ed0562b5da2f87d"),
         nome: "Cinemark Bourbon Ipiranga",
         salas: [
           {
             nome: 1,
             sessoes: [
               {
-                data: ISODate("2021-03-01T09:00:00Z"),
-                idFilme: ObjectId("63d8791840a077c381f3baaa"),
+                data: new Date("2021-03-01T09:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baaa"),
                 filme: "Vingadores: Guerra Infinita",
                 valor: 25,
                 assentos: [
@@ -33,8 +35,8 @@
                 ],
               },
               {
-                data: ISODate("2021-03-01T11:00:00Z"),
-                idFilme: ObjectId("63d8791840a077c381f3baaa"),
+                data: new Date("2021-03-01T11:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baaa"),
                 filme: "Vingadores: Guerra Infinita",
                 valor: 25,
                 assentos: [
@@ -49,8 +51,8 @@
                 ],
               },
               {
-                data: ISODate("2021-06-01T13:00:00Z"),
-                idFilme: ObjectId("63d8791840a077c381f3baab"),
+                data: new Date("2021-06-01T13:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baab"),
                 filme: "Vingadores: Era de Ultron",
                 valor: 20,
                 assentos: [
@@ -74,8 +76,8 @@
             nome: 2,
             sessoes: [
               {
-                data: ISODate("2021-03-01T09:00:00Z"),
-                idFilme: ObjectId("63d8791840a077c381f3baab"),
+                data: new Date("2021-03-01T09:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baab"),
                 filme: "Vingadores: Era de Ultron",
                 valor: 25,
                 assentos: [
@@ -90,8 +92,8 @@
                 ],
               },
               {
-                data: ISODate("2021-03-01T11:00:00Z"),
-                idFilme: ObjectId("63d8791840a077c381f3baa9"),
+                data: new Date("2021-03-01T11:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baa9"),
                 filme: "Vingadores: Ultimato",
                 valor: 25,
                 assentos: [
@@ -106,8 +108,8 @@
                 ],
               },
               {
-                data: ISODate("2021-03-01T13:00:00Z"),
-                idFilme: ObjectId("63d8791840a077c381f3baa9"),
+                data: new Date("2021-03-01T13:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baa9"),
                 filme: "Vingadores: Ultimato",
                 valor: 20,
                 assentos: [
@@ -130,15 +132,15 @@
         ],
       },
       {
-        _id: ObjectId(),
+        _id: new ObjectId("605e57238ed0562b5da2f87c"),
         nome: "GNC Lindóia",
         salas: [
           {
             nome: 100,
             sessoes: [
               {
-                data: ISODate("2021-03-30T19:00:00Z"),
-                idFilme: ObjectId("63d8791840a077c381f3baa9"),
+                data: new Date("2021-03-30T19:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baa9"),
                 filme: "Vingadores: Ultimato",
                 valor: 25,
                 assentos: [
@@ -153,8 +155,8 @@
                 ],
               },
               {
-                data: ISODate("2021-03-30T11:00:00Z"),
-                idFilme: ObjectId("63d8791840a077c381f3baa9"),
+                data: new Date("2021-03-30T11:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baa9"),
                 filme: "Vingadores: Ultimato",
                 valor: 25,
                 assentos: [
@@ -169,8 +171,8 @@
                 ],
               },
               {
-                data: ISODate("2021-03-30T13:00:00Z"),
-                idFilme: ObjectId("63d8791840a077c381f3baab"),
+                data: new Date("2021-03-30T13:00:00Z"),
+                idFilme: new ObjectId("63d8791840a077c381f3baab"),
                 filme: "Vingadores: Era de Ultron",
                 valor: 20.0,
                 assentos: [

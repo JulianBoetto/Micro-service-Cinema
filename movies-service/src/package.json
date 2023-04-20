@@ -8,8 +8,8 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "node --watch -r dotenv/config index.js",
-    "start": "node -r dotenv/config index.js",
+    "dev": "node --watch --require dotenv/config index.js",
+    "start": "node --require dotenv/config index.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles"
   },
   "keywords": [],
