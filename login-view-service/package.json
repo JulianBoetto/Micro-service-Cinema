@@ -1,0 +1,26 @@
+{
+  "name": "login-view-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "19"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch --require dotenv/config index.js",
+    "start": "node --require dotenv/config index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "dotenv-safe": "^8.2.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "helmet": "^6.1.5",
+    "morgan": "^1.10.0",
+    "passport": "^0.6.0"
+  }
+}
