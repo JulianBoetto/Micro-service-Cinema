@@ -218,7 +218,7 @@ function getMoviesByCinemaId(cinemaId) {
   if (cinemaId < 0) return null;
   return getCinemasByCityId().map((cinema) => {
     return {
-      titulo: cinema.salas[0].sessoes[0].filme,
+      title: cinema.salas[0].sessoes[0].filme,
       _id: cinema.salas[0].sessoes[0].idFilme,
     };
   });
@@ -232,7 +232,7 @@ async function getMovieSessionsByCityId(movieId, cityId) {
   if (movieId < 0 || cityId < 0) return null;
   return getCinemasByCityId().map((cinema) => {
     return {
-      titulo: cinema.salas[0].sessoes[0].filme,
+      title: cinema.salas[0].sessoes[0].filme,
       _id: cinema.salas[0].sessoes[0].idFilme,
       cinema: cinema.nome,
       idCinema: cinema._id,

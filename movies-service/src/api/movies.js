@@ -29,20 +29,20 @@ export default (app, repository) => {
     validateAdmin,
     validateMovie,
     async (req, res, next) => {
-      const titulo = req.body.titulo;
-      const sinopse = req.body.sinopse;
-      const duracao = parseInt(req.body.duracao);
-      const dataLancamento = new Date(req.body.dataLancamento);
-      const imagem = req.body.imagem;
-      const categorias = req.body.categorias;
+      const title = req.body.title;
+      const synopsis = req.body.synopsis;
+      const duration = parseInt(req.body.duration);
+      const releaseDate = new Date(req.body.releaseDate);
+      const image = req.body.image;
+      const categories = req.body.categories;
 
       const result = await repository.addMovie({
-        titulo,
-        sinopse,
-        duracao,
-        dataLancamento,
-        imagem,
-        categorias,
+        title,
+        synopsis,
+        duration,
+        releaseDate,
+        image,
+        categories,
       });
 
       logger.info(

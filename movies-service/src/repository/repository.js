@@ -16,7 +16,7 @@ async function getMoviePremieres() {
     monthAgo.setMonth(monthAgo.getMonth() - 1);
 
     const db = await database.connect();
-    return db.collection("movies").find({ dataLancamento: { $gte: monthAgo } }).toArray();
+    return db.collection("movies").find({ releaseDate: { $gte: monthAgo } }).toArray();
 }
 
 async function addMovie(movie) {

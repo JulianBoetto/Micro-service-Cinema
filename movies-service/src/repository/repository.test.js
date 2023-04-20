@@ -27,19 +27,19 @@ test("Find Movies premieres", async () => {
   const movies = await repository.getMoviePremieres();
   expect(Array.isArray(movies)).toBeTruthy();
   expect(movies.length).toBeTruthy();
-  expect(movies[0].dataLancamento.getTime()).toBeGreaterThanOrEqual(
+  expect(movies[0].releaseDate.getTime()).toBeGreaterThanOrEqual(
     monthAgo.getTime()
   );
 });
 
 test("addMovie", async () => {
   const movie = {
-    titulo: "Test Movie",
-    sinopse: "Movie Summary",
-    duracao: 120,
-    dataLancamento: new Date(),
-    imagem: "image.jpg",
-    categorias: ["Aventura"],
+    title: "Test Movie",
+    synopsis: "Movie Summary",
+    duration: 120,
+    releaseDate: new Date(),
+    image: "image.jpg",
+    categories: ["Aventura"],
   };
 
   let result;
@@ -54,12 +54,12 @@ test("addMovie", async () => {
 
 test("deleteMovie", async () => {
   const movie = {
-    titulo: "Test Movie",
-    sinopse: "Movie Summary",
-    duracao: 120,
-    dataLancamento: new Date(),
-    imagem: "image.jpg",
-    categorias: ["Aventura"],
+    title: "Test Movie",
+    synopsis: "Movie Summary",
+    duration: 120,
+    releaseDate: new Date(),
+    image: "image.jpg",
+    categories: ["Aventura"],
   };
 
   const result = await repository.addMovie(movie);

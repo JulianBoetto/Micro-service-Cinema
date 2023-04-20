@@ -1,22 +1,22 @@
 import joi from 'joi';
 
 const movieSchema = joi.object({
-    titulo: joi.string()
+    title: joi.string()
         .required()
         .min(2)
         .max(150),
-    sinopse: joi.string()
+    synopsis: joi.string()
         .min(10)
         .max(500),
-    duracao: joi.number()
+    duration: joi.number()
         .integer()
         .min(10),
-    dataLancamento: joi.date()
+    releaseDate: joi.date()
         .required(),
-    imagem: joi.string()
+    image: joi.string()
         .required()
         .pattern(/https?:\/\/.+\.(jpe?g|png|gif|svg)/i),
-    categorias: joi.array().items(joi.string()).required()
+    categories: joi.array().items(joi.string()).required()
 })
 
 export default movieSchema;

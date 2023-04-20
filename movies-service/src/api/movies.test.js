@@ -70,12 +70,12 @@ describe("Movies 200 OK", () => {
 
   test("POST /movies/ 201 OK", async () => {
     const movie = {
-      titulo: "Test Movie",
-      sinopse: "Test Summary",
-      duracao: 120,
-      dataLancamento: new Date(),
-      imagem: "http://image.jpg",
-      categorias: ["Aventura"],
+      title: "Test Movie",
+      synopsis: "Test Summary",
+      duration: 120,
+      releaseDate: new Date(),
+      image: "http://image.jpg",
+      categories: ["Aventura"],
     };
 
     const response = await request(app)
@@ -130,12 +130,12 @@ describe("Movies 401/404 ERROR", () => {
 
   test("POST /movies/ 401 UNAUTHORIZED", async () => {
     const movie = {
-      titulo: "Test Movie",
-      sinopse: "Test Summary",
-      duracao: 120,
-      dataLancamento: new Date(),
-      imagem: "http://image.jpg",
-      categorias: ["Aventura"],
+      title: "Test Movie",
+      synopsis: "Test Summary",
+      duration: 120,
+      releaseDate: new Date(),
+      image: "http://image.jpg",
+      categories: ["Aventura"],
     };
 
     const response = await request(app)
@@ -148,12 +148,12 @@ describe("Movies 401/404 ERROR", () => {
 
   test("POST /movies/ 403 FORBIDDEN", async () => {
     const movie = {
-      titulo: "Test Movie",
-      sinopse: "Test Summary",
-      duracao: 120,
-      dataLancamento: new Date(),
-      imagem: "http://image.jpg",
-      categorias: ["Aventura"],
+      title: "Test Movie",
+      synopsis: "Test Summary",
+      duration: 120,
+      releaseDate: new Date(),
+      image: "http://image.jpg",
+      categories: ["Aventura"],
     };
 
     const response = await request(app)

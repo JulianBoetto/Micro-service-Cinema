@@ -33,7 +33,7 @@ async function getMoviesByCinemaId(cinemaId) {
       {
         $group: {
           _id: {
-            titulo: "$cinemas.salas.sessoes.filme",
+            title: "$cinemas.salas.sessoes.filme",
             _id: "$cinemas.salas.sessoes.idFilme",
           },
         },
@@ -57,7 +57,7 @@ async function getMoviesByCityId(cityId) {
       {
         $group: {
           _id: {
-            titulo: "$cinemas.salas.sessoes.filme",
+            title: "$cinemas.salas.sessoes.filme",
             _id: "$cinemas.salas.sessoes.idFilme",
           },
         },
@@ -84,7 +84,7 @@ async function getMovieSessionsByCityId(movieId, cityId) {
       {
         $group: {
           _id: {
-            titulo: "$cinemas.salas.sessoes.filme",
+            title: "$cinemas.salas.sessoes.filme",
             _id: "$cinemas.salas.sessoes.idFilme",
             cinema: "$cinemas.nome",
             idCinema: "$cinemas._id",
@@ -114,7 +114,7 @@ async function getMovieSessionsByCinemaId(movieId, cinemaId) {
       {
         $group: {
           _id: {
-            titulo: "$cinemas.salas.sessoes.filme",
+            title: "$cinemas.salas.sessoes.filme",
             _id: "$cinemas.salas.sessoes.idFilme",
             cinema: "$cinemas.nome",
             idCinema: "$cinemas._id",
