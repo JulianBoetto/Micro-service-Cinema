@@ -13,7 +13,7 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles"
   },
   "keywords": [],
-  "author": "",
+  "author": "Julián Boetto",
   "license": "ISC",
   "dependencies": {
     "dotenv-safe": "^8.2.0",
