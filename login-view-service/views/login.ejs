@@ -13,17 +13,14 @@
     <input type="submit" value="Login" class="btn btn-primary" />
   </form>
   <hr />
-  <% if(message) { %>
+  <% if(errorMessage) { %>
     <p>
-        <% if(error) { %>
-          <div class="alert alert-danger">
-        <%} else {%>
-          <div class="alert alert-success">
-        <%}%>
-          <%= message %>
-        </div>
-    </p>
-  <%}%>
+    <div class="alert alert-danger">
+      <%= errorMessage %>
+    </div>
+  </p>
+
+  <% } %>
   <p>
     <a href="/users/forgot">Forgot the password?</a> | <a href="/users/signup">Don't have an account?</a>
   </p>
