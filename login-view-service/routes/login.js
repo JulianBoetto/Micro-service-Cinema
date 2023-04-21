@@ -1,6 +1,5 @@
-import passport from "passport";
-
 import { Router } from "express";
+import authController from "../controllers/authController.js";
 var router = Router();
 
 /* GET home page. */
@@ -24,15 +23,13 @@ router.get("/login", function (req, res) {
   else res.render("login", { title: "Login", message: null, error: false });
 });
 
-// router.post('/login',
-//   passport.authenticate('local', { successRedirect: '/index', failureRedirect: '/login?fail=true' })
-// );
+router.post("/login", authController.authenticate);
 
-// router.post('/logoff', function (req, res, next) {
-//   req.logOut(function (err) {
-//     if (err) return next(err);
-//     res.redirect('/login');
-//   });
-// })
+router.post("/logoff", function (req, res, next) {
+  req.logOut(function (err) {
+    if (err) return next(err);
+    res.redirect("/login");
+  });
+});
 
 export default router;

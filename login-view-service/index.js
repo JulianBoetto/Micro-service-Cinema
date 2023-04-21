@@ -2,23 +2,22 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import helmet from "helmet";
-import path from "path";
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
 import loginRouter from "./routes/login.js";
-import passport from "passport";
+import createError from "http-errors";
 
 const app = express();
 
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(cookieParser());
-app.use(express.static('./public'));
+app.use(express.static("./public"));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
-// app.use(passport.initialize());
-// app.use(passport.session());
+
 
 app.use("/", loginRouter);
 
@@ -30,11 +29,11 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render("error");
 });
 
 const server = app.listen(process.env.PORT, () => {
