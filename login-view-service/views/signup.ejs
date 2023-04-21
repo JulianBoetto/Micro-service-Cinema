@@ -1,0 +1,38 @@
+<%- include("top.ejs") %>
+<div class="col-sm-6">
+  <form action="/users/signup" method="POST">
+    <div class="form-group">
+      <label for="username">E-mail:</label>
+      <input
+        id="username"
+        class="form-control"
+        name="username"
+        type="text"
+        placeholder="Enter the e-mail"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        id="password"
+        class="form-control"
+        name="password"
+        type="password"
+        placeholder="Enter the password"
+      />
+    </div>
+    <div class="form-group">
+      <label for="profile">Profile: </label>
+      <select name="profile" class="form-control">
+        <option value="1">User</option>
+        <option value="2">Administrator</option>
+      </select>
+    </div>
+    <input type="submit" value="Save" class="btn btn-primary" />
+    <a href="/" class="btn">Cancel</a>
+  </form>
+  <% if(message) { %>
+  <div class="alert alert-danger"><%= message %></div>
+  <%}%>
+</div>
+<%- include("bottom.ejs") %>

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import authController from "../controllers/authController.js";
-var router = Router();
+const router = Router();
 
 /* GET home page. */
 router.get("/", function (req, res, next) {

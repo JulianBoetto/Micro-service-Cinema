@@ -1,0 +1,21 @@
+<%- include("top.ejs") %>
+<div class="col-sm-6">
+  <form action="/users/forgot" method="POST">
+    <div class="form-group">
+      <label for="email"
+        >Enter the registered email below to receive new login
+        credentials:</label
+      >
+      <input
+        name="email"
+        type="text"
+        class="form-control"
+        placeholder="Enter your email."
+      />
+    </div>
+    <input type="submit" value="Send" class="btn btn-primary" />
+  </form>
+  <hr />
+  <p>If you do not have an account, <a href="/users/signup">click here</a>.</p>
+</div>
+<%- include("bottom.ejs") %>

@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import helmet from "helmet";
 import loginRouter from "./routes/login.js";
+import usersRouter from "./routes/users.js";
 import createError from "http-errors";
 
 const app = express();
@@ -18,7 +19,7 @@ app.set("views", "./views");
 app.set("view engine", "ejs");
 
 
-
+app.use("/users", usersRouter);
 app.use("/", loginRouter);
 
 // catch 404 and forward to error handler
