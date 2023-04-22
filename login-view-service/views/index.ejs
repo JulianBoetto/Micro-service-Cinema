@@ -47,15 +47,13 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                
+              <%= filterCityBtn.city %>
               </button>
               <div class="dropdown-menu">
+                <a class="dropdown-item" href="/index?city=all">All</a></li>
                 <% cities.forEach((city) => { %>
-                  <!-- <a class="dropdown-item" href="#" data-value="ciudad1">Ciudad 1</a> -->
-                  <a class="dropdown-item" href="/index?city=<%= city.city.toLowerCase().replaceAll(' ', '_') %>" data-value="<%= city.city.toLowerCase().replaceAll(' ', '_') %>"><%= city.city %></a></li>
-                  <% }); %>
-
-                
+                  <a class="dropdown-item" href="/index?city=<%= city._id %>" data-value="<%= city.city.toLowerCase().replaceAll(' ', '_') %>"><%= city.city %></a></li>
+                <% }); %>                
               </div>
             </div>
           </div>
@@ -99,41 +97,5 @@
 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-      // Obtener elementos del DOM
-      const btnCiudad = document.querySelector("#btnCiudad");
-      const dropdownItems = document.querySelectorAll(".dropdown-item");
-
-      // Ciudad por defecto
-      let ciudadSeleccionada = "Ciudad por defecto";
-
-      // Actualizar texto del botón con la ciudad seleccionada
-      function actualizarBotonCiudad(ciudad) {
-        btnCiudad.textContent = ciudad;
-      }
-
-      // Actualizar la variable ciudadSeleccionada cuando se seleccione una ciudad del dropdown
-      dropdownItems.forEach((item) => {
-        item.addEventListener("click", () => {
-          ciudadSeleccionada = item.textContent;
-          actualizarBotonCiudad(ciudadSeleccionada);
-        });
-      });
-
-      // Mostrar y ocultar el dropdown al hacer clic en el botón
-      // btnCiudad.addEventListener("click", () => {
-      //   document.querySelector(".dropdown-menu").classList.toggle("show");
-      // });
-
-      // Ocultar el dropdown cuando se hace clic fuera de él
-      // window.addEventListener("click", (event) => {
-      //   if (!event.target.matches(".dropdown")) {
-      //     document.querySelector(".dropdown-menu").classList.remove("show");
-      //   }
-      // });
-
-      // Inicializar el botón con la ciudad por defecto
-      actualizarBotonCiudad(ciudadSeleccionada);
-    </script>
   </body>
 </html>
