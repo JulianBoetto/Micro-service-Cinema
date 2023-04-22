@@ -19,6 +19,11 @@ router.get("/login", function (req, res) {
 
 router.post("/login", authController.authenticate);
 
+router.get("/logout", (req, res, next) => {
+  res.clearCookie("token");
+  res.redirect("/login");
+});
+
 router.post("/logout", (req, res, next) => {
   res.clearCookie("token");
   res.redirect("/login");

@@ -1,23 +1,8 @@
-import axios from "axios";
+import base from "./base.js";
 const apiUrl = process.env.API_GATEWAY_URL;
 
 async function getMovies(token) {
-  if (!token) {
-    console.error("You need a token to make this request.");
-    return [];
-  }
-  try {
-    const response = await axios.get(`${apiUrl}/movies`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    console.log(response.data)
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    return [];
-  }
+  return await base.get(token, `${apiUrl}/movies`);
 }
 
 export default { getMovies };
