@@ -2,128 +2,128 @@ import { ObjectId } from "mongodb";
 
 const cinemaCatalog = [
   {
-    cidade: "Gravataí",
-    uf: "RS",
-    cinemas: [],
+    city: "Gravataí",
+    state: "RS",
+    movieTheaters: [],
   },
   {
-    cidade: "Porto Alegre",
-    uf: "RS",
-    pais: "BR",
-    cinemas: [
+    city: "Porto Alegre",
+    state: "RS",
+    country: "BR",
+    movieTheaters: [
       {
         _id: new ObjectId("605e57238ed0562b5da2f87d"),
-        nome: "Cinemark Bourbon Ipiranga",
-        salas: [
+        name: "Cinemark Bourbon Ipiranga",
+        screens: [
           {
-            nome: 1,
-            sessoes: [
+            name: 1,
+            sessions: [
               {
-                data: new Date("2021-03-01T09:00:00Z"),
-                idFilme: "63d8791840a077c381f3baaa",
-                filme: "Vingadores: Guerra Infinita",
-                valor: 25.0,
-                assentos: [
+                date: new Date("2021-03-01T09:00:00Z"),
+                movieId: "63d8791840a077c381f3baaa",
+                movie: "Vingadores: Guerra Infinita",
+                value: 25.0,
+                seats: [
                   {
-                    numero: 1,
-                    disponivel: true,
+                    number: 1,
+                    available: true,
                   },
                   {
-                    numero: 2,
-                    disponivel: false,
+                    number: 2,
+                    available: false,
                   },
                 ],
               },
               {
-                data: new Date("2021-03-01T11:00:00Z"),
-                idFilme: new ObjectId("63d8791840a077c381f3baaa"),
-                filme: "Vingadores: Guerra Infinita",
-                valor: 25.0,
-                assentos: [
+                date: new Date("2021-03-01T11:00:00Z"),
+                movieId: new ObjectId("63d8791840a077c381f3baaa"),
+                movie: "Vingadores: Guerra Infinita",
+                value: 25.0,
+                seats: [
                   {
-                    numero: 1,
-                    disponivel: true,
+                    number: 1,
+                    available: true,
                   },
                   {
-                    numero: 2,
-                    disponivel: true,
+                    number: 2,
+                    available: true,
                   },
                 ],
               },
               {
-                data: new Date("2021-06-01T13:00:00Z"),
-                idFilme: new ObjectId("63d8791840a077c381f3baab"),
-                filme: "Vingadores: Era de Ultron",
-                valor: 20.0,
-                assentos: [
+                date: new Date("2021-06-01T13:00:00Z"),
+                movieId: new ObjectId("63d8791840a077c381f3baab"),
+                movie: "Vingadores: Era de Ultron",
+                value: 20.0,
+                seats: [
                   {
-                    numero: 1,
-                    disponivel: true,
+                    number: 1,
+                    available: true,
                   },
                   {
-                    numero: 2,
-                    disponivel: false,
+                    number: 2,
+                    available: false,
                   },
                   {
-                    numero: 2,
-                    disponivel: true,
+                    number: 2,
+                    available: true,
                   },
                 ],
               },
             ],
           },
           {
-            nome: 2,
-            sessoes: [
+            name: 2,
+            sessions: [
               {
-                data: new Date("2021-03-01T09:00:00Z"),
-                idFilme: new ObjectId("63d8791840a077c381f3baab"),
-                filme: "Vingadores: Era de Ultron",
-                valor: 25.0,
-                assentos: [
+                date: new Date("2021-03-01T09:00:00Z"),
+                movieId: new ObjectId("63d8791840a077c381f3baab"),
+                movie: "Vingadores: Era de Ultron",
+                value: 25.0,
+                seats: [
                   {
-                    numero: 1,
-                    disponivel: true,
+                    number: 1,
+                    available: true,
                   },
                   {
-                    numero: 2,
-                    disponivel: false,
+                    number: 2,
+                    available: false,
                   },
                 ],
               },
               {
-                data: new Date("2021-03-01T11:00:00Z"),
-                idFilme: new ObjectId("63d8791840a077c381f3baa9"),
-                filme: "Vingadores: Ultimato",
-                valor: 25.0,
-                assentos: [
+                date: new Date("2021-03-01T11:00:00Z"),
+                movieId: new ObjectId("63d8791840a077c381f3baa9"),
+                movie: "Vingadores: Ultimato",
+                value: 25.0,
+                seats: [
                   {
-                    numero: 1,
-                    disponivel: true,
+                    number: 1,
+                    available: true,
                   },
                   {
-                    numero: 2,
-                    disponivel: true,
+                    number: 2,
+                    available: true,
                   },
                 ],
               },
               {
-                data: new Date("2021-03-01T13:00:00Z"),
-                idFilme: new ObjectId("63d8791840a077c381f3baa9"),
-                filme: "Vingadores: Ultimato",
-                valor: 20.0,
-                assentos: [
+                date: new Date("2021-03-01T13:00:00Z"),
+                movieId: new ObjectId("63d8791840a077c381f3baa9"),
+                movie: "Vingadores: Ultimato",
+                value: 20.0,
+                seats: [
                   {
-                    numero: 1,
-                    disponivel: true,
+                    number: 1,
+                    available: true,
                   },
                   {
-                    numero: 2,
-                    disponivel: false,
+                    number: 2,
+                    available: false,
                   },
                   {
-                    numero: 2,
-                    disponivel: true,
+                    number: 2,
+                    available: true,
                   },
                 ],
               },
@@ -133,60 +133,60 @@ const cinemaCatalog = [
       },
       {
         _id: new ObjectId("605e57238ed0562b5da2f87c"),
-        nome: "GNC Lindóia",
-        salas: [
+        name: "GNC Lindóia",
+        screens: [
           {
-            nome: 100,
-            sessoes: [
+            name: 100,
+            sessions: [
               {
-                data: new Date("2021-03-30T19:00:00Z"),
-                idFilme: new ObjectId("63d8791840a077c381f3baa9"),
-                filme: "Vingadores: Ultimato",
-                valor: 25.0,
-                assentos: [
+                date: new Date("2021-03-30T19:00:00Z"),
+                movieId: new ObjectId("63d8791840a077c381f3baa9"),
+                movie: "Vingadores: Ultimato",
+                value: 25.0,
+                seats: [
                   {
-                    numero: 1,
-                    disponivel: true,
+                    number: 1,
+                    available: true,
                   },
                   {
-                    numero: 2,
-                    disponivel: false,
+                    number: 2,
+                    available: false,
                   },
                 ],
               },
               {
-                data: new Date("2021-03-30T11:00:00Z"),
-                idFilme: new ObjectId("63d8791840a077c381f3baa9"),
-                filme: "Vingadores: Ultimato",
-                valor: 25.0,
-                assentos: [
+                date: new Date("2021-03-30T11:00:00Z"),
+                movieId: new ObjectId("63d8791840a077c381f3baa9"),
+                movie: "Vingadores: Ultimato",
+                value: 25.0,
+                seats: [
                   {
-                    numero: 1,
-                    disponivel: true,
+                    number: 1,
+                    available: true,
                   },
                   {
-                    numero: 2,
-                    disponivel: true,
+                    number: 2,
+                    available: true,
                   },
                 ],
               },
               {
-                data: new Date("2021-03-30T13:00:00Z"),
-                idFilme: new ObjectId("63d8791840a077c381f3baab"),
-                filme: "Vingadores: Era de Ultron",
-                valor: 20.0,
-                assentos: [
+                date: new Date("2021-03-30T13:00:00Z"),
+                movieId: new ObjectId("63d8791840a077c381f3baab"),
+                movie: "Vingadores: Era de Ultron",
+                value: 20.0,
+                seats: [
                   {
-                    numero: 1,
-                    disponivel: true,
+                    number: 1,
+                    available: true,
                   },
                   {
-                    numero: 2,
-                    disponivel: false,
+                    number: 2,
+                    available: false,
                   },
                   {
-                    numero: 2,
-                    disponivel: true,
+                    number: 2,
+                    available: true,
                   },
                 ],
               },
@@ -202,24 +202,24 @@ function getAllCities() {
   return cinemaCatalog.map((catalog) => {
     return {
       _id: new ObjectId("605e57238ed0562b5da2f87e"),
-      pais: catalog.pais,
-      uf: catalog.uf,
-      cidade: catalog.cidade,
+      country: catalog.country,
+      state: catalog.state,
+      city: catalog.city,
     };
   });
 }
 
 function getCinemasByCityId(cityId) {
   if (cityId < 0) return null;
-  return cinemaCatalog[cinemaCatalog.length - 1].cinemas;
+  return cinemaCatalog[cinemaCatalog.length - 1].movieTheaters;
 }
 
 function getMoviesByCinemaId(cinemaId) {
   if (cinemaId < 0) return null;
   return getCinemasByCityId().map((cinema) => {
     return {
-      title: cinema.salas[0].sessoes[0].filme,
-      _id: cinema.salas[0].sessoes[0].idFilme,
+      title: cinema.screens[0].sessions[0].movie,
+      _id: cinema.screens[0].sessions[0].movieId,
     };
   });
 }
@@ -232,12 +232,12 @@ async function getMovieSessionsByCityId(movieId, cityId) {
   if (movieId < 0 || cityId < 0) return null;
   return getCinemasByCityId().map((cinema) => {
     return {
-      title: cinema.salas[0].sessoes[0].filme,
-      _id: cinema.salas[0].sessoes[0].idFilme,
-      cinema: cinema.nome,
+      title: cinema.screens[0].sessions[0].movie,
+      _id: cinema.screens[0].sessions[0].movieId,
+      cinema: cinema.name,
       idCinema: cinema._id,
-      sala: cinema.salas[0].nome,
-      sessao: cinema.salas[0].sessoes[0],
+      screen: cinema.screens[0].name,
+      session: cinema.screens[0].sessions[0],
     };
   });
 }

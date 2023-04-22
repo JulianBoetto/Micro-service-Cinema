@@ -9,10 +9,10 @@ beforeAll(async () => {
   const cities = await repository.getAllCities();
   cityId = cities[cities.length - 1]._id;
 
-  const cinemas = await repository.getCinemasByCityId(cityId);
-  cinemaId = cinemas[0]._id;
+  const movieTheaters = await repository.getCinemasByCityId(cityId);
+  cinemaId = movieTheaters[0]._id;
 
-  movieId = cinemas[0].salas[0].sessoes[0].idFilme;
+  movieId = movieTheaters[0].screens[0].sessions[0].movieId;
 });
 
 test("getAllCities", async () => {
@@ -22,8 +22,8 @@ test("getAllCities", async () => {
 });
 
 test("getCinemasByCityId", async () => {
-  const cinemas = await repository.getCinemasByCityId(cityId);
-  expect(Array.isArray(cinemas)).toBeTruthy();
+  const movieTheaters = await repository.getCinemasByCityId(cityId);
+  expect(Array.isArray(movieTheaters)).toBeTruthy();
 });
 
 test("getMoviesByCinemaId", async () => {

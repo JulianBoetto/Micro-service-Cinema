@@ -57,7 +57,7 @@ describe("Login/Logout SUCCESS", () => {
 
 describe("Login/Logout ERRORS", () => {
   test("POST /login/ 422 UNPROCESSABLE ENTITY", async () => {
-    loginOk.data = new Date();
+    loginOk.date = new Date();
 
     const response = await request(app)
       .post("/login/")

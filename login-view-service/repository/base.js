@@ -20,7 +20,7 @@ async function get(token, url) {
     return [];
   } catch (error) {
     console.error(error.response ? error.response.data : error.response);
-    if (error.response.status === 401) {
+    if (error.response && error.response.status === 401) {
       return { error: "Token expired or invalid" };
     }
   }

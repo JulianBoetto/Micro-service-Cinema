@@ -23,10 +23,10 @@ export default (app, repository) => {
   });
 
   app.get("/cities/:cityId/cinemas", validateToken, async (req, res, next) => {
-    const cinemas = await repository.getCinemasByCityId(req.params.cityId);
-    if (!cinemas) return res.sendStatus(404);
+    const movieTheaters = await repository.getCinemasByCityId(req.params.cityId);
+    if (!movieTheaters) return res.sendStatus(404);
 
-    res.json(cinemas);
+    res.json(movieTheaters);
   });
 
   app.get("/cities", validateToken, async (req, res, next) => {

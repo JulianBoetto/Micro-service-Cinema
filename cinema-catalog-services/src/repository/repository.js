@@ -6,7 +6,7 @@ async function getAllCities() {
   return db
     .collection("cinema-catalog")
     .find({})
-    .project({ cidade: 1, uf: 1, pais: 1 })
+    .project({ city: 1, state: 1, country: 1 })
     .toArray();
 }
 
@@ -15,9 +15,9 @@ async function getCinemasByCityId(cityId) {
   const db = await database.connect();
   const city = await db
     .collection("cinema-catalog")
-    .findOne({ _id: objCityId }, { projection: { cinemas: 1 } });
+    .findOne({ _id: objCityId }, { projection: { movieTheaters: 1 } });
 
-  return city.cinemas;
+  return city.movieTheaters;
 }
 
 async function getMoviesByCinemaId(cinemaId) {
@@ -26,15 +26,15 @@ async function getMoviesByCinemaId(cinemaId) {
   const group = await db
     .collection("cinema-catalog")
     .aggregate([
-      { $match: { "cinemas._id": objCinemaId } },
-      { $unwind: "$cinemas" },
-      { $unwind: "$cinemas.salas" },
-      { $unwind: "$cinemas.salas.sessoes" },
+      { $match: { "movieTheaters._id": objCinemaId } },
+      { $unwind: "$movieTheaters" },
+      { $unwind: "$movieTheaters.screens" },
+      { $unwind: "$movieTheaters.screens.sessions" },
       {
         $group: {
           _id: {
-            title: "$cinemas.salas.sessoes.filme",
-            _id: "$cinemas.salas.sessoes.idFilme",
+            title: "$movieTheaters.screens.sessions.movie",
+            _id: "$movieTheaters.screens.sessions.movieId",
           },
         },
       },
@@ -51,14 +51,14 @@ async function getMoviesByCityId(cityId) {
     .collection("cinema-catalog")
     .aggregate([
       { $match: { _id: objCityId } },
-      { $unwind: "$cinemas" },
-      { $unwind: "$cinemas.salas" },
-      { $unwind: "$cinemas.salas.sessoes" },
+      { $unwind: "$movieTheaters" },
+      { $unwind: "$movieTheaters.screens" },
+      { $unwind: "$movieTheaters.screens.sessions" },
       {
         $group: {
           _id: {
-            title: "$cinemas.salas.sessoes.filme",
-            _id: "$cinemas.salas.sessoes.idFilme",
+            title: "$movieTheaters.screens.sessions.movie",
+            _id: "$movieTheaters.screens.sessions.movieId",
           },
         },
       },
@@ -77,19 +77,19 @@ async function getMovieSessionsByCityId(movieId, cityId) {
     .collection("cinema-catalog")
     .aggregate([
       { $match: { _id: objCityId } },
-      { $unwind: "$cinemas" },
-      { $unwind: "$cinemas.salas" },
-      { $unwind: "$cinemas.salas.sessoes" },
-      { $match: { "cinemas.salas.sessoes.idFilme": objMovieId } },
+      { $unwind: "$movieTheaters" },
+      { $unwind: "$movieTheaters.screens" },
+      { $unwind: "$movieTheaters.screens.sessions" },
+      { $match: { "movieTheaters.screens.sessions.movieId": objMovieId } },
       {
         $group: {
           _id: {
-            title: "$cinemas.salas.sessoes.filme",
-            _id: "$cinemas.salas.sessoes.idFilme",
-            cinema: "$cinemas.nome",
-            idCinema: "$cinemas._id",
-            sala: "$cinemas.salas.nome",
-            sessao: "$cinemas.salas.sessoes",
+            title: "$movieTheaters.screens.sessions.movie",
+            _id: "$movieTheaters.screens.sessions.movieId",
+            cinema: "$movieTheaters.name",
+            idCinema: "$movieTheaters._id",
+            screen: "$movieTheaters.screens.name",
+            session: "$movieTheaters.screens.sessions",
           },
         },
       },
@@ -106,20 +106,20 @@ async function getMovieSessionsByCinemaId(movieId, cinemaId) {
   const group = await db
     .collection("cinema-catalog")
     .aggregate([
-      { $match: { "cinemas._id": objCinemaId } },
-      { $unwind: "$cinemas" },
-      { $unwind: "$cinemas.salas" },
-      { $unwind: "$cinemas.salas.sessoes" },
-      { $match: { "cinemas.salas.sessoes.idFilme": objMovieId } },
+      { $match: { "movieTheaters._id": objCinemaId } },
+      { $unwind: "$movieTheaters" },
+      { $unwind: "$movieTheaters.screens" },
+      { $unwind: "$movieTheaters.screens.sessions" },
+      { $match: { "movieTheaters.screens.sessions.movieId": objMovieId } },
       {
         $group: {
           _id: {
-            title: "$cinemas.salas.sessoes.filme",
-            _id: "$cinemas.salas.sessoes.idFilme",
-            cinema: "$cinemas.nome",
-            idCinema: "$cinemas._id",
-            sala: "$cinemas.salas.nome",
-            sessao: "$cinemas.salas.sessoes",
+            title: "$movieTheaters.screens.sessions.movie",
+            _id: "$movieTheaters.screens.sessions.movieId",
+            cinema: "$movieTheaters.name",
+            idCinema: "$movieTheaters._id",
+            screen: "$movieTheaters.screens.name",
+            session: "$movieTheaters.screens.sessions",
           },
         },
       },

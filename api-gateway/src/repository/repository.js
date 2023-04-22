@@ -15,7 +15,7 @@ async function getUser(email, password) {
 
 async function blocklistToken(token) {
   const db = await database.connect();
-  return db.collection("blocklist").insertOne({ _id: token, data: new Date() });
+  return db.collection("blocklist").insertOne({ _id: token, date: new Date() });
 }
 
 async function checkBlocklist(token) {
