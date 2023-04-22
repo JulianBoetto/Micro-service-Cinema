@@ -19,7 +19,6 @@ async function authenticate(req, res, next) {
 
 async function validateToken(req, res, next) {
   const token = req.cookies.token;
-  console.log(token)
   if (!token) return res.redirect("/login");
   next();
 }
