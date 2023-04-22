@@ -10,7 +10,7 @@ async function authenticate(req, res, next) {
       password,
     });
     res.cookie("token", response.data.token, { maxAge: 3600000 });
-    res.redirect("/index");
+    res.redirect("/index?city=all");
   } catch (error) {
     const errorMessage = 'Incorrect email or password';
     return res.render('login', { errorMessage, title: "Login", message: null, error: null });

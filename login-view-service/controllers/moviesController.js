@@ -1,18 +1,18 @@
-import movies from "../repository/movies.js";
+import moviesRepository from "../repository/movies.js";
+import cinemaRepository from "../repository/cinema.js";
 
 async function getMovies(req, res, next) {
   const token = req.cookies.token;
-  const response = await movies.getMovies(token);
-  
+  const response = await moviesRepository.getMovies(token);
   if (response && response.error) return res.redirect("/logout");
 
+  const cities = await cinemaRepository.getCities(token);
+  console.log(cities)
+  if (cities && cities.error) return res.redirect("/logout");
+
   res.render("index", {
-    title: "title",
-    docs: [],
-    qtd: 2,
-    qtdPaginas: 4,
-    profile: "req.user.profile",
-    data: response,
+    movies: response,
+    cities: cities,
   });
 }
 

@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="auto">  
-    <%- include("dashboard/head.ejs") %>  
+<html lang="en" data-bs-theme="auto">
+  <%- include("dashboard/head.ejs") %>
   <body>
-    <%- include("buttonToggleTheme.ejs") %>
-
-    <%- include("dashboard/header.ejs") %>  
-    
+    <%- include("buttonToggleTheme.ejs") %> <%- include("dashboard/header.ejs")
+    %>
 
     <div class="container-fluid">
       <div class="row">
-        
-        <%- include("dashboard/sidebar.ejs") %>  
+        <%- include("dashboard/sidebar.ejs") %>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
           >
             <h1 class="h2">Dashboard</h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-toolbar mb-2 mb-md-0 dropdown">
               <!-- <div class="btn-group me-2">
                 <button type="button" class="btn btn-sm btn-outline-secondary">
                   Share
@@ -26,13 +23,23 @@
                   Export
                 </button>
               </div> -->
-              <!-- <button
+              <button
                 type="button"
                 class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
                 <span data-feather="calendar" class="align-text-bottom"></span>
-                Movies
-              </button> -->
+                Cities
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/index?city=">All</a></li>
+                
+                <% cities.forEach((city) => { %>
+
+                <li><a class="dropdown-item" href="/index?city=<%= city.cidade.toLowerCase().replaceAll(" ", "_") %>" ><%= city.cidade %></a></li>
+                <% }); %>
+              </ul>
             </div>
           </div>
 
@@ -51,19 +58,19 @@
                 </tr>
               </thead>
               <tbody>
-                <% data.forEach((item, index) => { %>
+                <% movies.forEach((movie, index) => { %>
                 <tr>
                   <td><%= index + 1 %></td>
                   <!-- <td>
-                    <img src="<%= item.image %>" crossorigin="anonymous" />
+                    <img src="<%= movie.image %>" crossorigin="anonymous" />
                   </td> -->
-                  <td><%= item.title %></td>
-                  <td><%= item.synopsis %></td>
-                  <td><%= item.duration %></td>
+                  <td><%= movie.title %></td>
+                  <td><%= movie.synopsis %></td>
+                  <td><%= movie.duration %></td>
                   <td>
-                    <%= new Date(item.releaseDate).toLocaleDateString() %>
+                    <%= new Date(movie.releaseDate).toLocaleDateString() %>
                   </td>
-                  <td><%= item.categories %></td>
+                  <td><%= movie.categories %></td>
                 </tr>
                 <% }); %>
               </tbody>
@@ -74,5 +81,6 @@
     </div>
 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    
   </body>
 </html>
