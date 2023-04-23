@@ -1,6 +1,7 @@
 import axios from "axios";
+import redis from "../cache/cacheLayer.js";
 
-async function get(token, url) {
+async function get(token, url, key) {
   if (!token) {
     console.error("You need a token to make this request.");
     return [];
@@ -16,7 +17,11 @@ async function get(token, url) {
       },
     });
 
-    if (response.status === 200) return response.data;
+    if (response.status === 200) {
+      console.log("base.js", key);
+      if (key) await redis.set(key, JSON.stringify(response.data));
+      return response.data;
+    }
     return [];
   } catch (error) {
     console.error(error.response ? error.response.data : error.response);
