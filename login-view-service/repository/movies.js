@@ -10,4 +10,12 @@ async function getMovies(token) {
   return await base.get(token, `${apiUrl}/movies`, 'movies');
 }
 
-export default { getMovies };
+async function getMoviesByCity(token, cityId) {
+  const cachedData = await redis.get(`${cityId}-movies`);
+  if (cachedData) {
+    return JSON.parse(cachedData);
+  }
+  return await base.get(token, `${apiUrl}/cities/${cityId}/movies`, `${cityId}-movies`);
+}
+
+export default { getMovies, getMoviesByCity };
