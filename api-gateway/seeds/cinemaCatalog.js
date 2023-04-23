@@ -53,7 +53,7 @@ module.exports = [
               {
                 date: new Date("2021-06-01T13:00:00Z"),
                 movieId: new ObjectId("63d8791840a077c381f3baab"),
-                movie: "Avengers: Age of Ultron",
+                movie: "Vingadores: Era de Ultron",
                 value: 20,
                 seats: [
                   {

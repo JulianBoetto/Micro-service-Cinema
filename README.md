@@ -108,12 +108,6 @@ To configure the `api-gateway service` .env file, the following variables need t
   GET /cities
 ```
 
-#### Get all cities
-
-```http
-  GET /cities
-```
-
 #### Get all movies by city
 
 ```http
@@ -181,7 +175,6 @@ Here's an example of a POST request body to create a new movie:
 
 ```
 {
-  "_id": "63d8791840a077c381f3baa9",
   "title": "Avengers: Endgame",
   "synopsis": "The most powerful heroes on Earth face off against Thanos. Again.",
   "duration": 181,
