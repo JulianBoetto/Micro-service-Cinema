@@ -3,19 +3,48 @@
   class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse"
 >
   <div class="position-sticky pt-3 sidebar-sticky">
-    <ul class="nav flex-column">
+    <ul class="nav nav-pills flex-column">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">
-          <span data-feather="home" class="align-text-bottom"></span>
-          Dashboard
-        </a>
+        <a
+          class="nav-link link-body-emphasis active"
+          aria-current="page"
+          href="#"
+          >Dashboard</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="file" class="align-text-bottom"></span>
-          Orders
+        <a class="nav-link link-body-emphasis" href="#"> Orders </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link link-body-emphasis" aria-current="page">
+          Home
         </a>
       </li>
     </ul>
+    <hr />
+    <div class="dropdown">
+      <a
+        href="#"
+        class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <img
+          src=""
+          alt=""
+          width="32"
+          height="32"
+          class="rounded-circle me-2"
+        />
+        <strong>mdo</strong>
+      </a>
+      <ul class="dropdown-menu text-small shadow">
+        <li><a class="dropdown-item" href="#">New project...</a></li>
+        <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><hr class="dropdown-divider" /></li>
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
+    </div>
   </div>
 </nav>
