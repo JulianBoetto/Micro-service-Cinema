@@ -21,7 +21,7 @@ async function getAllMovies(req, res, next) {
     
   if (!cities || cities.error) return res.redirect("/logout");
 
-  res.render("dashboard/index", {
+  res.render("dashboard/moviesByCity", {
     movies: response,
     cities: cities,
     filterCityBtn,
@@ -51,7 +51,7 @@ async function getMoviesByCity(req, res, next) {
   if (!cities || cities.error) return res.redirect("/logout");
 
   console.log(filterCityBtn);
-  res.render("dashboard/index", {
+  res.render("dashboard/moviesByCity", {
     movies: moviesByCity,
     cities,
     filterCityBtn,
