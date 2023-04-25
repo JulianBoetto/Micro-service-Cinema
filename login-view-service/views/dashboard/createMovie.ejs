@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+  <%- include("head.ejs") %>
+  <body>
+    <%- include("buttonToggleTheme.ejs") %> <%- include("header.ejs") %>
+
+    <div class="container-fluid">
+      <div class="row">
+        <%- include("sidebar.ejs") %>
+          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+            <div class="py-5 text-center">
+              <h2>New movie</h2>
+              <p class="lead">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat illo odit, iusto modi quae velit eaque consequuntur eius dignissimos error totam aspernatur, sit itaque impedit voluptates, nostrum eum fugit minus..
+              </p>
+            </div>
+
+            <div class="row d-flex justify-content-center">
+              <div class="col-md-7 col-lg-8">
+                <form action="/movies" method="post" enctype="multipart/form-data">
+                  <div class="row g-3">
+                    <div class="col">
+                      <label for="title" class="form-label"
+                        >Title</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="title"
+                        name="title"
+                        
+                      />
+                      <div class="invalid-feedback">
+                        Valid title is required.
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="synopsis" class="form-label"
+                        >Synopsis
+                        <span class="text-body-secondary"
+                          >(Optional)</span
+                        ></label
+                      >
+                      <textarea class="form-control" aria-label="With textarea" id="synopsis" name="synopsis"></textarea>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="duration" class="form-label">Duration in minutes <span class="text-body-secondary"
+                        >(Optional)</span
+                      ></label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="duration"
+                        placeholder="120"
+                        name="duration"
+                      />
+                    </div>
+
+                    <div class="col-12">
+                      <label for="releaseDate" class="form-label"
+                        >Release date</label
+                      >
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="releaseDate"
+                        name="releaseDate"
+                      />
+                      <div class="invalid-feedback">
+                        Please enter a valid date.
+                      </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <label for="image" class="form-label">Image</label>
+                        <input class="form-control" type="file" id="image" name="image" required>
+                        <div class="invalid-feedback">
+                            Please enter a image file.
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="categories" class="form-label">Categories</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Action" id="action-ctg" name="action-ctg">
+                            <label class="form-check-label" for="action-ctg">
+                              Action
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="Adventure" id="adventure-ctg" name="adventure-ctg">
+                            <label class="form-check-label" for="adventure-ctg">
+                              Adventure
+                            </label>
+                        </div>
+                        <div class="invalid-feedback" id="categories">
+                            Please select at least one valid category.
+                        </div>
+                    </div>                    
+                    
+                  <input type="hidden" name="access_token" value="<%= token %>">
+                  <input type="hidden" id="categories-array" name="categories" value="[]">
+                  <hr class="my-4" />
+
+                  <button class="w-100 btn btn-primary btn-lg" type="submit" id="btn-create">
+                    Create
+                  </button>                 
+                </form>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/badger.js" type="module"></script>
+  </body>
+</html>

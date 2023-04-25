@@ -39,7 +39,7 @@ test("addMovie", async () => {
     duration: 120,
     releaseDate: new Date(),
     image: "image.jpg",
-    categories: ["Aventura"],
+    categories: ["Adventure"],
   };
 
   let result;
@@ -59,7 +59,7 @@ test("deleteMovie", async () => {
     duration: 120,
     releaseDate: new Date(),
     image: "image.jpg",
-    categories: ["Aventura"],
+    categories: ["Adventure"],
   };
 
   const result = await repository.addMovie(movie);

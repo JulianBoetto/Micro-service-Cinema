@@ -75,7 +75,7 @@ describe("Movies 200 OK", () => {
       duration: 120,
       releaseDate: new Date(),
       image: "http://image.jpg",
-      categories: ["Aventura"],
+      categories: ["Adventure"],
     };
 
     const response = await request(app)
@@ -135,7 +135,7 @@ describe("Movies 401/404 ERROR", () => {
       duration: 120,
       releaseDate: new Date(),
       image: "http://image.jpg",
-      categories: ["Aventura"],
+      categories: ["Adventure"],
     };
 
     const response = await request(app)
@@ -153,7 +153,7 @@ describe("Movies 401/404 ERROR", () => {
       duration: 120,
       releaseDate: new Date(),
       image: "http://image.jpg",
-      categories: ["Aventura"],
+      categories: ["Adventure"],
     };
 
     const response = await request(app)

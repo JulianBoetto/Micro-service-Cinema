@@ -18,7 +18,7 @@ async function getAllMovies(req, res, next) {
     });
   else if (city && city === "all" && city !== filterCityBtn._id)
     filterCityBtn = { _id: "all", city: "All" };
-    
+
   if (!cities || cities.error) return res.redirect("/logout");
 
   res.render("dashboard/moviesByCity", {
@@ -58,4 +58,31 @@ async function getMoviesByCity(req, res, next) {
   });
 }
 
-export default { getAllMovies, getMoviesByCity };
+async function renderCreateMovie(req, res, next) {
+  const token = req.cookies.token;
+  res.render("dashboard/createMovie", { token });
+}
+
+async function createMovie(req, res, next) {
+  const movie = {
+    title: req.body.title,
+    synopsis: req.body.synopsis,
+    duration: Number(req.body.duration),
+    releaseDate: req.body.releaseDate,
+    image: `uploads/${req.file.filename}`,
+    categories: req.body.categories.split(",")
+  };
+
+  const newMovie = await moviesRepository.createMovie(req.cookies.token, movie);
+  if (!newMovie || newMovie.error) return res.redirect("/logout");
+
+  console.log(newMovie)
+  return res.render('dashboard/createdMovie', newMovie)
+}
+
+export default {
+  getAllMovies,
+  getMoviesByCity,
+  renderCreateMovie,
+  createMovie,
+};

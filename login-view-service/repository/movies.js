@@ -18,4 +18,8 @@ async function getMoviesByCity(token, cityId) {
   return await base.get(token, `${apiUrl}/cities/${cityId}/movies`, `${cityId}-movies`);
 }
 
-export default { getMovies, getMoviesByCity };
+async function createMovie(token, newMovie) {
+  return await base.post(token, `${apiUrl}/movies`, newMovie);
+}
+
+export default { getMovies, getMoviesByCity, createMovie };

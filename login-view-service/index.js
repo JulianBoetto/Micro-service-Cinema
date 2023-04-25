@@ -5,7 +5,8 @@ import helmet from "helmet";
 import loginRouter from "./routes/login.js";
 import usersRouter from "./routes/users.js";
 import indexRouter from "./routes/index.js";
-import createError from "http-errors";
+import createRouter from "./routes/create.js";
+import moviesRouter from "./routes/movies.js";
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.set("views", "./views");
 app.set("view engine", "ejs");
 
 app.use("/index", indexRouter);
+app.use("/create", createRouter);
+app.use("/movies", moviesRouter);
 app.use("/users", usersRouter);
 app.use("/", loginRouter);
 
